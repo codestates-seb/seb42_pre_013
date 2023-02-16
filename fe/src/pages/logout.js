@@ -50,8 +50,10 @@ const Logout = () => {
                     </ul>
                     <div>
                         <div>
+                            <input type="checkbox"></input>
                         </div>
-                        <div></div>
+                        <div>
+                        </div>
                     </div>
                 </form>
             </div>
