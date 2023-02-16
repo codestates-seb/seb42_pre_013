@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+<<<<<<< Updated upstream
 import Logout from './pages/Logout';
 
 function App() {
@@ -22,6 +22,23 @@ function App() {
     // </div>
     <Logout />
 );
+=======
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+import SignUp from './pages/SignUp';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/signup" element={<SignUp/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+>>>>>>> Stashed changes
 }
 
 export default App;
