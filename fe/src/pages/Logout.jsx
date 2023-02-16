@@ -1,15 +1,9 @@
-<<<<<<< Updated upstream
 import React from "react"
 import styled from "styled-components";
 
 const Logout = () => {
     return (
         <Container>
-=======
-const Logout = () => {
-    return (
-        <div className="container">
->>>>>>> Stashed changes
             <div id="content">
                 <div>
                     <h1>
@@ -19,7 +13,6 @@ const Logout = () => {
                 <form>
                     <ul>
                         <li>
-<<<<<<< Updated upstream
                             <Link href="https://askubuntu.com">
                                 <LogoImg 
                                     src='https://cdn.sstatic.net/Sites/askubuntu/Img/apple-touch-icon.png'
@@ -128,57 +121,3 @@ const LogoutAll = styled.div`
 const CheckboxDiv = styled.div`
     margin-right: 4px;
 `
-=======
-                            <a href="https://askubuntu.com">
-                                <div></div>
-                                <div>askubuntu.com</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://mathoverflow.net">
-                                <div></div>
-                                <div>mathoverflow.net</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://serverfault.com">
-                                <div></div>
-                                <div>serverfault.com</div>
-                            </a>
-                        </li>                        <li>
-                            <a href="https://stackapps.com">
-                                <div></div>
-                                <div>stackapps.com</div>
-                            </a>
-                        </li>                        <li>
-                            <a href="https://stackexchange.com">
-                                <div></div>
-                                <div>stackexchange.com</div>
-                            </a>
-                        </li>                        <li>
-                            <a href="https://stackoverflow.com">
-                                <div></div>
-                                <div>stackoverflow.com</div>
-                            </a>
-                        </li>                        <li>
-                            <a href="https://superuser.com">
-                                <div></div>
-                                <div>superuser.com</div>
-                            </a>
-                        </li>
-                    </ul>
-                    <div>
-                        <div>
-                            <input type="checkbox"></input>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
-}
-
-export default Logout
->>>>>>> Stashed changes
