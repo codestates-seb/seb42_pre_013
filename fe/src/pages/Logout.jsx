@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Logout = () => {
     return (
+        <>
         <Container>
             <div id="content">
                 <div>
@@ -94,10 +95,15 @@ const Logout = () => {
                 </form>
             </div>
         </Container>
+        </>
     )
 }
 
 export default Logout;
+
+const Container = styled.div`
+
+`
 
 const Link = styled.a`
     display: flex;
