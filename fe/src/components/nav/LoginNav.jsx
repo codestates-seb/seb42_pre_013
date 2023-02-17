@@ -10,10 +10,9 @@ function LoginNav() {
       <NavTop />
       <WrapperNav>
         <Icon>
-          <div>
-            <img src={menuBar} alt="menuBar" />
-          </div>
+          <img src={menuBar} alt="menuBar" />
         </Icon>
+        <WrapperEtc></WrapperEtc>
         <TitleImg>
           <img src={stackOverflow} alt="stackOverflow Logo" />
         </TitleImg>
@@ -24,8 +23,8 @@ function LoginNav() {
         </Title>
         <NavTab>
           <a href="https://stackoverflow.co/">About</a>
-          <a>Products</a>
-          <a>ForTeams</a>
+          <p>Products</p>
+          <a href="https://stackoverflow.co/teams/">ForTeams</a>
         </NavTab>
         <Search>
           <img src={searchIcon} alt="searchIcon"></img>
@@ -47,11 +46,14 @@ export default LoginNav;
 const WrapperNav = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: fle; */
   background-color: whiteSmoke;
   height: 3rem;
   box-shadow: 1px 1px 7px gray;
   width: 100%;
+`;
+
+const WrapperEtc = styled.div`
+  margin-left: 3rem;
 `;
 
 const NavTop = styled.div`
@@ -60,9 +62,10 @@ const NavTop = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 1rem;
-  height: 1rem;
-  margin: 1rem;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  margin: 15px 15px;
 `;
 
 const TitleImg = styled.div`
@@ -87,6 +90,22 @@ const NavTab = styled.div`
     color: #878c90;
     list-style: none;
     text-decoration: none;
+
+    :hover {
+      font-weight: bold;
+    }
+  }
+
+  p {
+    margin-right: 10px;
+    color: #878c90;
+    list-style: none;
+    text-decoration: none;
+
+    :hover {
+      font-weight: bold;
+      cursor: pointer
+    }
   }
 `;
 
