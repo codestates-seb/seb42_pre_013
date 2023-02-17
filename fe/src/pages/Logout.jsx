@@ -4,7 +4,6 @@ import styled from "styled-components";
 function Logout() {
     return (
         <Container>
-            <div>push 후 pull 테스트</div>
             <Content>
                 <FlexItem>
                         <H1>
