@@ -5,6 +5,7 @@ import LoginButtons from "../components/login/LoginButtons";
 import LoginForm from "../components/login/LoginForm";
 import copyBtn from "../assets/svg/copyBtn.svg";
 import stackOverFlowIcon from "../assets/img/stackOverFlowIcon.png";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -20,7 +21,13 @@ function Login() {
         {/* Sign up , Route Link Signup page 예정 */}
         <ExplainWrapper>
           <p>
-            Don't have an account? <>Sign up</>
+            Don't have an account?{" "}
+            <Link
+              to="/signup"
+              style={{ textDecoration: "none", color: "#0a95ff" }}
+            >
+              Sign up
+            </Link>
           </p>
           <p>
             Are you an employer? Sign up on Talent
@@ -61,5 +68,15 @@ const ExplainWrapper = styled.div`
   margin-top: 1.5rem;
   & > p {
     margin-top: 1rem;
+  }
+
+  img {
+    margin-left: 5px;
+  }
+
+  & > Link {
+    text-decoration: none;
+    color: #0a95ff;
+    margin: 3px;
   }
 `;

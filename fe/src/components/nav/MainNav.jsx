@@ -1,30 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import stackOverflow from "../../assets/img/stackOverFlowIcon.png";
-import menuBar from "../../assets/svg/bars-solid.svg";
 import searchIcon from "../../assets/svg/magnifying-glass-solid.svg";
 
-function LoginNav() {
+function MainNav() {
   return (
     <>
       <NavTop />
       <WrapperNav>
-        <Icon>
-          <img src={menuBar} alt="menuBar" />
-        </Icon>
-        <WrapperEtc></WrapperEtc>
         <TitleImg>
           <img src={stackOverflow} alt="stackOverflow Logo" />
         </TitleImg>
+
         <Title>
           <p>
             stack<b>overflow</b>
           </p>
         </Title>
+
         <NavTab>
-          <a href="https://stackoverflow.co/">About</a>
           <p>Products</p>
-          <a href="https://stackoverflow.co/teams/">ForTeams</a>
         </NavTab>
         <Search>
           <img src={searchIcon} alt="searchIcon"></img>
@@ -41,7 +36,7 @@ function LoginNav() {
   );
 }
 
-export default LoginNav;
+export default MainNav;
 
 const WrapperNav = styled.div`
   display: flex;
@@ -52,33 +47,22 @@ const WrapperNav = styled.div`
   width: 100%;
 `;
 
-const WrapperEtc = styled.div`
-  margin-left: 3rem;
-`;
-
 const NavTop = styled.div`
   height: 4px;
   background-color: #f48225;
-`;
-
-const Icon = styled.div`
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  margin: 15px 15px;
 `;
 
 const TitleImg = styled.div`
   img {
     width: 2.6rem;
     height: 2.4rem;
-    margin: 0.3rem 0 1rem 0;
+    margin: 0.3rem 0 0.1rem 0;
   }
 `;
 
 const Title = styled.div`
-  font-size: 1.5rem;
-  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  margin-top: 0.6rem;
 `;
 
 const NavTab = styled.div`
@@ -93,6 +77,7 @@ const NavTab = styled.div`
 
     :hover {
       font-weight: bold;
+      letter-spacing: -0.88px;
     }
   }
 
@@ -105,6 +90,7 @@ const NavTab = styled.div`
     :hover {
       font-weight: bold;
       cursor: pointer;
+      letter-spacing: -1px;
     }
   }
 `;
@@ -142,10 +128,14 @@ const Button = styled.div`
     background-color: #e1ecf5;
     color: #85aecc;
     margin: 5px;
+    cursor: pointer;
     :last-child {
       background-color: #0a94ff;
       color: #ffffff;
       border: none;
+    }
+
+    :hover {
     }
   }
 `;
