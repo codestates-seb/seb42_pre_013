@@ -133,6 +133,7 @@ const Button = styled.div`
 
   form {
     margin-left: 2rem;
+    display: flex;
   }
   button {
     width: 60px;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import stackOverflow from "../../assets/img/stackOverFlowIcon.png";
 import menuBar from "../../assets/svg/bars-solid.svg";
 import searchIcon from "../../assets/svg/magnifying-glass-solid.svg";
+import stackExchange from "../../assets/svg/logo_stack-exchange.svg"
 
 function LogoutNav() {
   return (
@@ -10,10 +11,9 @@ function LogoutNav() {
       <NavTop />
       <WrapperNav>
         <Icon>
-          <div>
-            <img src={menuBar} alt="menuBar" />
-          </div>
+          <img src={menuBar} alt="menuBar" />
         </Icon>
+        <WrapperEtc></WrapperEtc>
         <TitleImg>
           <img src={stackOverflow} alt="stackOverflow Logo" />
         </TitleImg>
@@ -24,19 +24,41 @@ function LogoutNav() {
         </Title>
         <NavTab>
           {/* <a href="https://stackoverflow.co/">About</a> */}
-          <a>Products</a>
-          {/* <a>ForTeams</a> */}
+          <p>Products</p>
+          {/* <a href="https://stackoverflow.co/teams/">ForTeams</a> */}
         </NavTab>
         <Search>
           <img src={searchIcon} alt="searchIcon"></img>
           <input type="text" placeholder="Search..."></input>
         </Search>
-        <Button>
-          <form>
-            <button>Log in</button>
-            <button>Sign up</button>
-          </form>
-        </Button>
+        <Buttons>
+          <div>
+          <button>User</button>
+          </div>
+          <button>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/482/482956.png"
+              alt="Recent inbox messages"
+            />
+          </button>
+          <button>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/8660/8660026.png"
+              alt="Recent achievements"
+            />
+          </button>            <button>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4467/4467515.png"
+              alt="Help Center and other resources"
+            />
+          </button>            
+          <button>
+            <img
+              src={stackExchange}
+              alt="A list of Stack Exchange sites"
+            />
+          </button>
+        </Buttons>
       </WrapperNav>
     </>
   );
@@ -47,11 +69,15 @@ export default LogoutNav;
 const WrapperNav = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: fle; */
+  justify-content: center;
   background-color: whiteSmoke;
   height: 3rem;
   box-shadow: 1px 1px 7px gray;
   width: 100%;
+`;
+
+const WrapperEtc = styled.div`
+  margin-left: 3rem;
 `;
 
 const NavTop = styled.div`
@@ -60,9 +86,10 @@ const NavTop = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 1rem;
-  height: 1rem;
-  margin: 1rem;
+  /* position: absolute; */
+  width: 15px;    border: 1px solid #85aecc;
+
+  margin: 15px 15px;
 `;
 
 const TitleImg = styled.div`
@@ -87,6 +114,22 @@ const NavTab = styled.div`
     color: #878c90;
     list-style: none;
     text-decoration: none;
+
+    :hover {
+      font-weight: bold;
+    }
+  }
+
+  p {
+    margin-right: 10px;
+    color: #878c90;
+    list-style: none;
+    text-decoration: none;
+
+    :hover {
+      font-weight: bold;
+      cursor: pointer
+    }
   }
 `;
 
@@ -108,17 +151,29 @@ const Search = styled.div`
   }
 `;
 
-const Button = styled.div`
+const Buttons = styled.div`
   display: flex;
   justify-content: space-around;
-  form {
-    padding-left: 40px;
+  &>div {
+    width: 40px;
+    button {
+      width: 24px;
+      height: 24px;
+      background-color: #f48225;
+    }
+  }
+  img{
+    width: 20px;
+    height: 20px;
   }
   button {
-    width: 60px;
+    height: 47px;
+    padding: 0 10px;
+    border: none;
+    background: transparent;
+    /* width: 60px;
     height: 2.3rem;
     border-radius: 5px;
-    border: 1px solid #85aecc;
     background-color: #e1ecf5;
     color: #85aecc;
     margin: 5px;
@@ -126,6 +181,6 @@ const Button = styled.div`
       background-color: #0a94ff;
       color: #ffffff;
       border: none;
-    }
+    } */
   }
 `;
