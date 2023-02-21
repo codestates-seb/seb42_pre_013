@@ -115,10 +115,11 @@ const Search = styled.div`
 
 const Button = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 
   form {
     margin-left: 2rem;
+    display: flex;
   }
   button {
     width: 60px;

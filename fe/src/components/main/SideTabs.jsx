@@ -50,6 +50,8 @@ export default SideTabs;
 
 const Wrapper = styled.div`
   margin-left: 3rem;
+  height: 100vh;
+  /* border-right: 1px solid #f1f2f3; */
 `;
 
 const HomeWrapper = styled.div`
@@ -58,21 +60,22 @@ const HomeWrapper = styled.div`
   font-size: 13px;
   font-weight: 800;
   height: 2rem;
+  display: flex;
 `;
 
 const Home = styled.div`
-  flex: 6;
+  flex: 1;
   padding-left: 10px;
   padding-top: 7px;
 `;
 const RightColor = styled.div`
-  flex: 1;
+  width: 4px;
   background-color: #f48225;
 `;
 
 const PublicWrapper = styled.div`
   margin-top: 1rem;
-  font-size: 13px;
+  font-size: 11px;
   margin-left: 10px;
 
   div:first-child {
@@ -87,8 +90,8 @@ const PublicWrapper = styled.div`
 
   img {
     position: relative;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1rem;
+    height: 1rem;
     color: #838b92;
     top: 4px;
     right: 2px;
@@ -97,14 +100,16 @@ const PublicWrapper = styled.div`
 
 const CollecTivesWrapper = styled.div`
   margin-top: 1rem;
-  font-size: 13px;
+  font-size: 11px;
   margin-left: 10px;
 
   div:first-child {
     color: #838b92;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     img {
-      position: relative;
-      left: 3.7rem;
+      top: 0.2rem
     }
   }
   p {
@@ -116,8 +121,8 @@ const CollecTivesWrapper = styled.div`
 
   img {
     position: relative;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1rem;
+    height: 1rem;
     color: #838b92;
     top: 4px;
     right: 2px;
@@ -126,14 +131,16 @@ const CollecTivesWrapper = styled.div`
 
 const TeamsWrapper = styled.div`
   margin-top: 1rem;
-  font-size: 13px;
+  font-size: 11px;
   margin-left: 10px;
 
   div:first-child {
     color: #838b92;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     img {
-      position: relative;
-      left: 6.4rem;
+      top: 0.2rem
     }
   }
   p {
@@ -145,8 +152,8 @@ const TeamsWrapper = styled.div`
 
   img {
     position: relative;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1rem;
+    height: 1rem;
     color: #838b92;
     top: 4px;
     right: 2px;
