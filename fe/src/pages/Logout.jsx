@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 import styled from "styled-components";
-import LogoutNav from '../components/nav/LogoutNav'
+import LogoutNav from '../components/nav/LogoutNav';
 
 
 function Logout() {
@@ -108,6 +108,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 0.2rem;
     `;
 
 const H1 = styled.div`

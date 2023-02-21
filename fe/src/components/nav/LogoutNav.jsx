@@ -69,7 +69,6 @@ export default LogoutNav;
 const WrapperNav = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   background-color: whiteSmoke;
   height: 3rem;
   box-shadow: 1px 1px 7px gray;
@@ -86,9 +85,9 @@ const NavTop = styled.div`
 `;
 
 const Icon = styled.div`
-  /* position: absolute; */
-  width: 15px;    border: 1px solid #85aecc;
-
+  position: absolute;
+  width: 15px;
+  height: 15px;
   margin: 15px 15px;
 `;
 
@@ -128,7 +127,7 @@ const NavTab = styled.div`
 
     :hover {
       font-weight: bold;
-      cursor: pointer
+      cursor: pointer;
     }
   }
 `;
@@ -136,7 +135,7 @@ const NavTab = styled.div`
 const Search = styled.div`
   display: relative;
   margin: 8px;
-  width: 30%;
+  width: 40%;
   input {
     width: 100%;
     height: 30px;
@@ -151,36 +150,42 @@ const Search = styled.div`
   }
 `;
 
+
 const Buttons = styled.div`
   display: flex;
   justify-content: space-around;
   &>div {
-    width: 40px;
+    width: 48px;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: #e1e5ec;
+    }
     button {
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       background-color: #f48225;
+      font-size: 12px;
+      border: none;
+      border-radius: 5px;
+      padding: 0;
+      text-align: center;
+      color: #ffffff;
     }
   }
   img{
     width: 20px;
     height: 20px;
   }
-  button {
+  &>button {
     height: 47px;
     padding: 0 10px;
     border: none;
     background: transparent;
-    /* width: 60px;
-    height: 2.3rem;
-    border-radius: 5px;
-    background-color: #e1ecf5;
-    color: #85aecc;
-    margin: 5px;
-    :last-child {
-      background-color: #0a94ff;
-      color: #ffffff;
-      border: none;
-    } */
+    &:hover {
+      background-color: #e1e5ec;
+    }
   }
 `;
