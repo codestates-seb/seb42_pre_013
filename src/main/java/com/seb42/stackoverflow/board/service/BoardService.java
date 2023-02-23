@@ -5,8 +5,8 @@ import com.seb42.stackoverflow.board.mapper.BoardMapper;
 import com.seb42.stackoverflow.board.repository.BoardRepository;
 import com.seb42.stackoverflow.exception.BusinessLogicException;
 import com.seb42.stackoverflow.exception.ExceptionCode;
-import com.seb42.stackoverflow.member.entity.Member;
-import com.seb42.stackoverflow.member.service.MemberService;
+import com.seb42.stackoverflow.user.entity.User;
+import com.seb42.stackoverflow.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,24 +23,24 @@ import java.util.Optional;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
-    private final MemberService memberService;
+    private final UserService userService;
 
-    public Board saveBoard(Board board, long memberId){
-        Member findMember = memberService.findVerifiedMember(memberId);
-        Board makeBoard = createBoard(board, findMember);
+    public Board saveBoard(Board board, long userId){
+        User findUser = userService.findVerifiedUser(userId);
+        Board makeBoard = createBoard(board, findUser);
         return boardRepository.save(makeBoard);
     }
 
-    public Board createBoard(Board board, Member member){
-        board.setWriter(member);
+    public Board createBoard(Board board, User user){
+        board.setUser(user);
         //member.getBoards().add(board);
         return board;
     }
 
-    public Board updateBoard(Board board, long memberId){
+    public Board updateBoard(Board board, long userId){
         Board findBoard = findVerifiedBoard(board.getBoardId());
 
-        if(board.getWriter().getMemberId() != memberId){
+        if(board.getUser().getUserId() != userId){
             throw new BusinessLogicException(ExceptionCode.USER_UNAUTHORIZED);
         }
 
@@ -82,10 +82,10 @@ public class BoardService {
 //        return boards;
 //    }
 
-    public void deleteBoard(long boardId, long memberId){
+    public void deleteBoard(long boardId, long userId){
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
         optionalBoard.ifPresentOrElse(board -> {
-            if(!Objects.equals(board.getWriter().getMemberId(), memberId)){
+            if(!Objects.equals(board.getUser().getUserId(), userId)){
                 throw new BusinessLogicException(ExceptionCode.USER_UNAUTHORIZED);
             }
             boardRepository.delete(board);

@@ -1,4 +1,4 @@
-package com.seb42.stackoverflow.member.dto;
+package com.seb42.stackoverflow.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,9 +6,8 @@ import lombok.Getter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
-public class MemberDto {
+public class UserDto {
     @Getter
     @AllArgsConstructor
     public static class Post{
@@ -25,14 +24,14 @@ public class MemberDto {
 
     @Getter
     public static class Patch {
-        private long memberId;
+        private long userId;
 
         private String name;
 
         private String password;
 
-        public void setMemberId(long memberId) {
-            this.memberId = memberId;
+        public void setUserId(long userId) {
+            this.userId = userId;
         }
     }
 
@@ -50,7 +49,7 @@ public class MemberDto {
     @AllArgsConstructor
     @Getter
     public static class response {
-        private long memberId;
+        private long userId;
         private String email;
         private String password;
         private String name;

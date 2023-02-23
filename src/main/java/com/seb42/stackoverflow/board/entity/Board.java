@@ -1,7 +1,7 @@
 package com.seb42.stackoverflow.board.entity;
 
 import com.seb42.stackoverflow.comment.entity.Comment;
-import com.seb42.stackoverflow.member.entity.Member;
+import com.seb42.stackoverflow.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,8 +21,8 @@ public class Board {
     private long boardId;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member writer;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany
     @JoinColumn(name = "comment")
