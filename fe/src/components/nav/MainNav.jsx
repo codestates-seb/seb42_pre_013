@@ -1,42 +1,72 @@
 import React from "react";
 import styled from "styled-components";
 import stackOverflow from "../../assets/img/stackOverFlowIcon.png";
+import menuBar from "../../assets/svg/bars-solid.svg";
 import searchIcon from "../../assets/svg/magnifying-glass-solid.svg";
+import stackExchange from "../../assets/svg/logo_stack-exchange.svg";
+import { Link } from "react-router-dom";
 
-function MainNav() {
+function LogoutNav() {
   return (
     <>
       <NavTop />
       <WrapperNav>
+        <WrapperEtc />
+        <Icon>
+          <img src={menuBar} alt="menuBar" />
+        </Icon>
         <TitleImg>
           <img src={stackOverflow} alt="stackOverflow Logo" />
         </TitleImg>
-
-        <Title>
-          <p>
-            stack<b>overflow</b>
-          </p>
-        </Title>
+        <Link to="/main" style={{ textDecoration: "none", color: "black" }}>
+          <Title>
+            <p>
+              stack<b>overflow</b>
+            </p>
+          </Title>
+        </Link>
 
         <NavTab>
+          {/* <a href="https://stackoverflow.co/">About</a> */}
           <p>Products</p>
+          {/* <a href="https://stackoverflow.co/teams/">ForTeams</a> */}
         </NavTab>
         <Search>
           <img src={searchIcon} alt="searchIcon"></img>
           <input type="text" placeholder="Search..."></input>
         </Search>
-        <Button>
-          <form>
-            <button>Log in</button>
-            <button>Sign up</button>
-          </form>
-        </Button>
+        <Buttons>
+          <div>
+            <button>User</button>
+          </div>
+          <button>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/482/482956.png"
+              alt="Recent inbox messages"
+            />
+          </button>
+          <button>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/8660/8660026.png"
+              alt="Recent achievements"
+            />
+          </button>{" "}
+          <button>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4467/4467515.png"
+              alt="Help Center and other resources"
+            />
+          </button>
+          <button>
+            <img src={stackExchange} alt="A list of Stack Exchange sites" />
+          </button>
+        </Buttons>
       </WrapperNav>
     </>
   );
 }
 
-export default MainNav;
+export default LogoutNav;
 
 const WrapperNav = styled.div`
   display: flex;
@@ -47,22 +77,37 @@ const WrapperNav = styled.div`
   width: 100%;
 `;
 
+const WrapperEtc = styled.div`
+  margin-left: 3rem;
+`;
+
 const NavTop = styled.div`
   height: 4px;
   background-color: #f48225;
+`;
+
+const Icon = styled.div`
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  margin: 15px 15px;
 `;
 
 const TitleImg = styled.div`
   img {
     width: 2.6rem;
     height: 2.4rem;
-    margin: 0.3rem 0 0.1rem 0;
+    margin: 0.3rem 0 1rem 0;
   }
 `;
 
 const Title = styled.div`
-  font-size: 1.2rem;
-  margin-top: 0.6rem;
+  font-size: 1.5rem;
+  margin-top: 0.4rem;
+
+  :hover {
+    color: #5b5b5b;
+  }
 `;
 
 const NavTab = styled.div`
@@ -77,7 +122,6 @@ const NavTab = styled.div`
 
     :hover {
       font-weight: bold;
-      letter-spacing: -0.88px;
     }
   }
 
@@ -90,7 +134,6 @@ const NavTab = styled.div`
     :hover {
       font-weight: bold;
       cursor: pointer;
-      letter-spacing: -1px;
     }
   }
 `;
@@ -113,30 +156,41 @@ const Search = styled.div`
   }
 `;
 
-const Button = styled.div`
+const Buttons = styled.div`
   display: flex;
-  justify-content: flex-end;
-
-  form {
-    margin-left: 2rem;
+  justify-content: space-around;
+  & > div {
+    width: 48px;
+    height: 47px;
     display: flex;
-  }
-  button {
-    width: 60px;
-    height: 2.3rem;
-    border-radius: 5px;
-    border: 1px solid #85aecc;
-    background-color: #e1ecf5;
-    color: #85aecc;
-    margin: 5px;
-    cursor: pointer;
-    :last-child {
-      background-color: #0a94ff;
-      color: #ffffff;
-      border: none;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: #e1e5ec;
     }
-
-    :hover {
+    button {
+      width: 30px;
+      height: 30px;
+      background-color: #f48225;
+      font-size: 12px;
+      border: none;
+      border-radius: 5px;
+      padding: 0;
+      text-align: center;
+      color: #ffffff;
+    }
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  & > button {
+    height: 47px;
+    padding: 0 10px;
+    border: none;
+    background: transparent;
+    &:hover {
+      background-color: #e1e5ec;
     }
   }
 `;

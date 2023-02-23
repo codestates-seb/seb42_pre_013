@@ -5,7 +5,7 @@ import Logout from "./pages/Logout";
 import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
 import Question from "./pages/Question";
-
+import Answer from "./pages/Answer"
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +15,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/main" element={<Main />} />
         <Route path="/question" element={<Question />} />
+        <Route path="/answer" element={<Answer />} />
       </Routes>
     </BrowserRouter>
   );

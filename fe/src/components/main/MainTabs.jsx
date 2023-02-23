@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Main from "../../pages/Main";
 import MainPost from "./MainPost";
@@ -81,11 +82,11 @@ function MainTabs() {
 
   const handleBtnTop = (e) => {
     e.preventDefault();
+
+    //! 수정 해야함
+    <Link to="/question/:id" />
   };
 
-  const handleBtnUnder = (e) => {
-    e.preventDefault();
-  };
 
   return (
     <Wrapper>
@@ -97,7 +98,7 @@ function MainTabs() {
         </form>
       </TopQuestions>
       <TopQuestionsUnder>
-        <form onClick={handleBtnUnder}>
+        <form onClick={(e) => e.preventDefault()}>
           <button>Interesting</button>
           <button>Bountied</button>
           <button>Hot</button>
