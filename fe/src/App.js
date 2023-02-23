@@ -5,7 +5,7 @@ import Logout from "./pages/Logout";
 import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
 import Ask from "./pages/Ask";
-import Answer from "./pages/Answer"
+import Answer from "./pages/Answer";
 function App() {
   return (
     <BrowserRouter>
