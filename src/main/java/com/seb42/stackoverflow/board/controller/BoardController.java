@@ -5,7 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/board")
+@RequestMapping(path = "/com/seb42/stackoverflow/board")
 @Validated
 @RequiredArgsConstructor
 public class BoardController {

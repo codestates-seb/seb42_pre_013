@@ -1,5 +1,6 @@
 package com.seb42.stackoverflow.comment.entity;
 
+import com.seb42.stackoverflow.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,11 +37,10 @@ public class Comment {
     @JoinColumn(name = "posts_id")
     private Posts posts;
 
-    /* 댓글 수정 User Entity 필요
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user; // 작성자
     public void update(String comment) {
         this.comment = comment;
-    }*/
+    }
 }

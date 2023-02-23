@@ -11,7 +11,7 @@ public class CommentResponseDto {
     private String comment;
     private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
     private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
-    private String nickname;
+    private String name;
     private Long postsId;
 
     public CommentResponseDto(Comment comment) {
@@ -19,7 +19,7 @@ public class CommentResponseDto {
         this.comment = comment.getComment();
         this.createdDate = comment.getCreatedDate();
         this.modifiedDate = comment.getModifiedDate();
-        //this.nickname = comment.getUser.getNickname();
+        //this.name = comment.getUser.getName();
         this.postsId = comment.getPosts().getId();
     }
 }

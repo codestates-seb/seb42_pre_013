@@ -44,6 +44,12 @@ public class UserDto {
 
         @NotNull
         private String password;
+
+        private String name;
+
+        public String getName() {
+            return name;
+        }
     }
 
     @AllArgsConstructor
