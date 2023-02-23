@@ -14,7 +14,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/main" element={<Main />} />
-        <Route path="/question" element={<Ask />} />
+        <Route path="/ask" element={<Ask />} />
         <Route path="/answer" element={<Answer />} />
       </Routes>
     </BrowserRouter>
