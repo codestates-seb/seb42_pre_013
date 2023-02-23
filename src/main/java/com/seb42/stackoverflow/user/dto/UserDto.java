@@ -2,6 +2,7 @@ package com.seb42.stackoverflow.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 public class UserDto {
     @Getter
+    @Setter
     @AllArgsConstructor
     public static class Post{
         @NotBlank
@@ -23,6 +25,7 @@ public class UserDto {
     }
 
     @Getter
+    @Setter
     public static class Patch {
         private long userId;
 
@@ -48,6 +51,7 @@ public class UserDto {
 
     @AllArgsConstructor
     @Getter
+    @Setter
     public static class response {
         private long userId;
         private String email;
