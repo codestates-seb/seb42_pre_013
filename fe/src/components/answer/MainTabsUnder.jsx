@@ -6,9 +6,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function MainTabsUnder() {
-  //? answer 작성 값
+  // answer 작성 값
   const [answerValue, setAnswerValue] = useState("");
-  //? answer 작성 값 id > 1부터 시작
+  // answer 작성 값 id > 1부터 시작
   const answerId = useRef(1);
 
   const navigate = useNavigate();
