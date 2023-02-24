@@ -7,7 +7,7 @@ import BlueBoxContents from "../components/ask/BlueBoxContents";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Ask() {
+function Ask({ mainContentsValue }) {
   // title , contents 값
   const [titleValue, setTitleValue] = useState("");
   const [contentsValue, setContentsValue] = useState("");
@@ -22,37 +22,22 @@ function Ask() {
     console.log(contentsValue);
   };
 
+  // id 구조할당분해
+  //   const {id} = mainContentsValue
+
   // 작성글 ID
-  const contentsId = useRef(1);
+  const contentsId = useRef(4);
 
   // navigate 받기
   const navigate = useNavigate();
 
-  //! 제목, 타이틀 받아오기 GET
-  const fetchData = async () => {
-    // .get(`/${id}`)
-    await axios
-      .get(``)
-      .then((res) => {
-        console.log(res);
-        setTitleValue(res.data.data);
-        setContentsValue(res.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  // 페이지 접속 시 로딩 && 게시글 작성시 <Link to> 로  > get 갱신
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   //! answer 작성한 것 서버에 전송 POST
   const submitContentsHandler = (e) => {
     if (!titleValue || !contentsValue) {
-      e.preventDefault();
+      //   e.preventDefault();
       alert("empty value.. Write your answer!");
     } else {
-      e.preventDefault();
+      //   e.preventDefault();
 
       let data = JSON.stringify({
         //! 키 값은 api 명세서에 따라 변경
@@ -68,7 +53,7 @@ function Ask() {
       };
 
       axios
-        .post("", data, header)
+        .post(`http://localhost:4000/ask`, data, header)
         .then((data) => {
           setTitleValue(titleValue.concat(data));
           setContentsValue(contentsValue.concat(data));
@@ -80,7 +65,7 @@ function Ask() {
         });
       //! navigate(`/ask/${id}`); 변경하기
       navigate(`/main`);
-      window.location.reload();
+      //   window.location.reload();
     }
   };
 
@@ -159,7 +144,7 @@ function Ask() {
                   </div>
                 </div>
                 <div>
-                  <NextButton>Submit</NextButton>
+                  <NextButton type="submit">Submit</NextButton>
                 </div>
               </TitleBox>
               <Guide>

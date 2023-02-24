@@ -39,21 +39,21 @@ function MainTabsUnder() {
   };
 
 
-  //! 답변 작성 받아오기 GET
-  const fetchData = async () => {
-    await axios
-      .get(``)
-      .then((res) => {
-        console.log(res);
-        setAnswerValue(res.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
+  // //! 답변 작성 받아오기 GET
+  // const fetchData = async () => {
+  //   await axios
+  //     .get(``)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setAnswerValue(res.data.data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
-  // 페이지 오거나, 어짜피 작성하면 answer 페이지로 오기때문에 리로딩 > get 갱신
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // // 페이지 오거나, 어짜피 작성하면 answer 페이지로 오기때문에 리로딩 > get 갱신
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   //! answer 작성한 것 서버에 전송 POST
   const submitAnswerHandler = (e) => {

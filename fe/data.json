@@ -1,0 +1,39 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "abc",
+      "email": "aaaa@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "ask": [
+    {
+      "id": 1,
+      "title": "Proper way to load environment variable in runtime javascript?",
+      "keyword": "js",
+      "user": "Kim"
+    },
+    {
+      "id": 2,
+      "title": "Proper way to load environment variable in runtime javascript?",
+      "keyword": "js",
+      "user": "Kim"
+    },
+    {
+      "id": 3,
+      "title": "Proper way to load environment variable in runtime javascript?",
+      "keyword": "js",
+      "user": "Kim"
+    },
+    {
+      "id": 4,
+      "title": "123123",
+      "contents": "123123123"
+    }
+  ],
+  "answer": {
+    "id": 1,
+    "content": "코멘트 댓글입니다~"
+  }
+}

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 function MainPost({ post, mainContentsValue }) {
+  // console.log(mainContentsValue)
+  // const {title, keyword, user} = mainContentsValue
   return (
     <Wrapper>
       <LeftWrapper>

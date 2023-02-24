@@ -31,7 +31,7 @@ function MainTabs({ mainContentsValue }) {
       <TopQuestions>
         <span>Tob Questions</span>
 
-        <form onClick={(e) => e.preventDefault()}>
+        <form>
           <Link to="/ask">
             <button>Ask Question</button>
           </Link>
@@ -47,9 +47,10 @@ function MainTabs({ mainContentsValue }) {
         </form>
       </TopQuestionsUnder>
       <MainPosts mainContentsValue={mainContentsValue}>
-        {post.map((el) => {
-          return <MainPost post={el} key={el.id} />;
-        })}
+        {post &&
+          post.map((el) => {
+            return <MainPost post={el} key={el.id} />;
+          })}
       </MainPosts>
     </Wrapper>
   );
