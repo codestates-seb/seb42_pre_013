@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Main from "../../pages/Main";
 import MainPost from "./MainPost";
 
-function MainTabs() {
+function MainTabs({ mainContentsValue }) {
   const [post, setPost] = useState([
     {
       id: "1",
@@ -24,77 +24,17 @@ function MainTabs() {
       keyword: "js",
       user: "Kim",
     },
-    {
-      id: "4",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "5",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "6",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "7",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "8",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "9",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "10",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "11",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "12",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
   ]);
-
-  const handleBtnTop = (e) => {
-    e.preventDefault();
-
-    //! 수정 해야함
-    <Link to="/question/:id" />
-  };
-
 
   return (
     <Wrapper>
       <TopQuestions>
         <span>Tob Questions</span>
 
-        <form onClick={handleBtnTop}>
-          <button>Ask Question</button>
+        <form onClick={(e) => e.preventDefault()}>
+          <Link to="/ask">
+            <button>Ask Question</button>
+          </Link>
         </form>
       </TopQuestions>
       <TopQuestionsUnder>
@@ -106,7 +46,7 @@ function MainTabs() {
           <button>Month</button>
         </form>
       </TopQuestionsUnder>
-      <MainPosts>
+      <MainPosts mainContentsValue={mainContentsValue}>
         {post.map((el) => {
           return <MainPost post={el} key={el.id} />;
         })}

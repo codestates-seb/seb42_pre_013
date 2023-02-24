@@ -1,18 +1,96 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import AskNav from "../components/nav/AskNav";
 import pencil from "../assets/img/pencil.png";
 import Footer from "../components/footer/Footer";
 import BlueBoxContents from "../components/ask/BlueBoxContents";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Ask() {
+  // title , contents 값
+  const [titleValue, setTitleValue] = useState("");
+  const [contentsValue, setContentsValue] = useState("");
+  // title 값 받아오기
+  const TitleValue = (e) => {
+    setTitleValue(e.target.value);
+    console.log(titleValue);
+  };
+  // contents 값 받아오기
+  const ContentsValue = (e) => {
+    setContentsValue(e.target.value);
+    console.log(contentsValue);
+  };
+
+  // 작성글 ID
+  const contentsId = useRef(1);
+
+  // navigate 받기
+  const navigate = useNavigate();
+
+  //! 제목, 타이틀 받아오기 GET
+  const fetchData = async () => {
+    // .get(`/${id}`)
+    await axios
+      .get(``)
+      .then((res) => {
+        console.log(res);
+        setTitleValue(res.data.data);
+        setContentsValue(res.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // 페이지 접속 시 로딩 && 게시글 작성시 <Link to> 로  > get 갱신
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  //! answer 작성한 것 서버에 전송 POST
+  const submitContentsHandler = (e) => {
+    if (!titleValue || !contentsValue) {
+      e.preventDefault();
+      alert("empty value.. Write your answer!");
+    } else {
+      e.preventDefault();
+
+      let data = JSON.stringify({
+        //! 키 값은 api 명세서에 따라 변경
+        id: contentsId.current,
+        title: titleValue,
+        contents: contentsValue,
+      });
+
+      const header = {
+        headers: {
+          "Content-Type": `application/json`,
+        },
+      };
+
+      axios
+        .post("", data, header)
+        .then((data) => {
+          setTitleValue(titleValue.concat(data));
+          setContentsValue(contentsValue.concat(data));
+          contentsId.current += 1;
+        })
+        .catch((err) => {
+          alert("Upload Error");
+          console.log(err);
+        });
+      //! navigate(`/ask/${id}`); 변경하기
+      navigate(`/main`);
+      window.location.reload();
+    }
+  };
+
   return (
     <>
       <AskNav />
       <Container>
         <Content>
           {/* form 여기  */}
-          <QuestionForm>
+          <QuestionForm onSubmit={submitContentsHandler}>
             <section>
               <div>
                 <h1>Ask a public question</h1>
@@ -41,12 +119,11 @@ function Ask() {
                       type="text"
                       maxLength="300"
                       placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+                      onChange={TitleValue}
                     />
                   </div>
                 </div>
-                <div>
-                  <NextButton>Next</NextButton>
-                </div>
+                <div></div>
               </TitleBox>
               <Guide>
                 <GuideTitle>Writing a good title</GuideTitle>
@@ -78,11 +155,11 @@ function Ask() {
                     </div>
                   </div>
                   <div>
-                    <ContentInput />
+                    <ContentInput onChange={ContentsValue} />
                   </div>
                 </div>
                 <div>
-                  <NextButton>Next</NextButton>
+                  <NextButton>Submit</NextButton>
                 </div>
               </TitleBox>
               <Guide>
@@ -232,7 +309,7 @@ const TitleBox = styled.div`
 `;
 
 const NextButton = styled.button`
-  width: 49.52px;
+  width: 60px;
   height: 37.78px;
   color: #ffffff;
   margin-top: 8px;
@@ -249,7 +326,7 @@ const NextButton = styled.button`
   }
 `;
 
-const ContentInput = styled.input`
+const ContentInput = styled.textarea`
   height: 256.66px;
 `;
 

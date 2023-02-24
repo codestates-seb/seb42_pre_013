@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-function MainPost({ post }) {
+function MainPost({ post, mainContentsValue }) {
   return (
     <Wrapper>
       <LeftWrapper>
@@ -10,7 +11,13 @@ function MainPost({ post }) {
         <p>views</p>
       </LeftWrapper>
       <RightWrapper>
-        <Title>{post.title}</Title>
+        {/* mainContentsValue 로 수정하기 */}
+        {/* <Link to="/answer/:mainContentsValue.id" /> */}
+
+        <Link to="/answer" style={{ textDecoration: "none" }}>
+          <Title>{post.title}</Title>
+        </Link>
+
         <Keyword>{post.keyword}</Keyword>
         <User>{post.user}</User>
       </RightWrapper>
@@ -34,7 +41,7 @@ const LeftWrapper = styled.div`
   font-size: 0.7rem;
 `;
 const RightWrapper = styled.div`
-width: 90%
+  width: 90%;
 `;
 
 const User = styled.div`
@@ -51,8 +58,10 @@ const User = styled.div`
 const Title = styled.div`
   font-size: 0.9rem;
   color: #1266aa;
+
   :hover {
     color: #37a0ff;
+    cursor: pointer;
   }
 `;
 

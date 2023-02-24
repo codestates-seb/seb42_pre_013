@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import MainNav from "../components/nav/MainNav";
 import SideTabs from "../components/main/SideTabs";
 import RightSideTabs from "../components/main/RightSideTabs";
 import MainTabs from "../components/main/MainTabs";
 import Footer from "../components/footer/Footer";
-
+import axios from "axios"
+// import { useNavigate } from "react-router-dom";
 
 function Main() {
+    // title , contents 값
+    const [mainContentsValue, setMainContentsValue] = useState("");
+  
+    // 작성글 ID
+    const contentsId = useRef(1);
+  
+    // navigate 받기
+    // const navigate = useNavigate();
+  
+    //! 제목, 타이틀 받아오기 GET -> BOARD 주소
+    const fetchData = async () => {
+      await axios
+        .get(``)
+        .then((res) => {
+          console.log(res);
+          setMainContentsValue(res.data.data);
+        })
+        .catch((error) => console.log(error));
+    };
+  
+    // 페이지 접속 시 로딩 && 게시글 작성시 <Link to> 로  > get 갱신
+    useEffect(() => {
+      fetchData();
+    }, []);
+
   return (
     <>
       <MainNav />
@@ -17,7 +43,7 @@ function Main() {
             <SideTabs />
           </SideTab>
           <MainTab>
-            <MainTabs />
+            <MainTabs mainContentsValue={mainContentsValue}/>
           </MainTab>
           <SideRightEtc><RightSideTabs /></SideRightEtc>
         </InnerWrapper>

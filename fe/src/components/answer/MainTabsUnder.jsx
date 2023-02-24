@@ -20,7 +20,26 @@ function MainTabsUnder() {
     console.log(answerValue);
   };
 
-  //! 답변 작성 받아오기
+  // 수정 값
+  const [edited, setEdited] = useState(false);
+  const [newText, setNewText] = useState(answerValue); // 새로운 아이템 내용 넣을 값
+
+  //! answerValue 구조할당분해 ->
+  const { id, content } = answerValue;
+
+  // 수정 값 받아오기
+  const EditInput = (e) => {
+    setNewText(e.target.value);
+    console.log(newText);
+  };
+
+  // Edit 버튼 클릭시 수정 모드
+  const onClickEditButton = () => {
+    setEdited(true);
+  };
+
+
+  //! 답변 작성 받아오기 GET
   const fetchData = async () => {
     await axios
       .get(``)
@@ -36,7 +55,7 @@ function MainTabsUnder() {
     fetchData();
   }, []);
 
-  //! answer 작성한 것 서버에 전송
+  //! answer 작성한 것 서버에 전송 POST
   const submitAnswerHandler = (e) => {
     if (!answerValue) {
       e.preventDefault();
@@ -69,6 +88,94 @@ function MainTabsUnder() {
     }
   };
 
+  //! 삭제 DELETE -> 해보고 안되면 useCallback((id) => {}, [answerValue])
+  const removeContentsHandler = (e) => {
+    e.preventDefault();
+
+    let data = JSON.stringify({
+      //! 키 값은 api 명세서에 따라 변경
+      id: answerId.current,
+      content: answerValue,
+    });
+    const header = {
+      headers: {
+        "Content-Type": `application/json`,
+      },
+    };
+
+    axios
+      .delete("", data, header)
+      .then((data) => {
+        setAnswerValue(answerValue.filter((el) => el.id !== id));
+      })
+      .catch((err) => {
+        alert("Upload Error");
+        console.log(err);
+      });
+
+    navigate("/answer");
+    window.location.reload();
+  };
+
+  //! 수정 PATCH
+  const EditContentsHandler = (e) => {
+    // e.preventDefault();
+
+    if (!newText) {
+      alert("empty value.. Write your answer!");
+    } else {
+      let data = JSON.stringify({
+        // 현재 id 와 변경된 값을 POST
+        //! 키 값은 api 명세서에 따라 변경
+        id: answerId.current,
+        content: newText,
+      });
+      const header = {
+        headers: {
+          "Content-Type": `application/json`,
+        },
+      };
+
+      axios
+        .post("", data, header)
+        .then((data) => {
+          setAnswerValue(answerValue.concat(data));
+          const nextAnswerValue = answerValue.map((el) => ({
+            ...el, // 이전 값
+
+            // 새로운 아이템 내용을 넣어줌
+            content: el.id === id ? newText : el.content,
+          }));
+
+          // console.log(nextAnswerValue);
+
+          setAnswerValue(nextAnswerValue); // 새로운 리스트를 넣어줌
+
+          // console.log(answerValue)
+        })
+        .catch((err) => {
+          alert("Upload Error");
+          console.log(err);
+        });
+
+      setEdited(false); // 수정모드를 다시 읽기모드로 변경
+
+      // `answer/${id}` 수정
+      navigate("/answer");
+      window.location.reload();
+    }
+  };
+
+  //! edited 모드일 때 포커싱
+
+  const editInputRef = useRef(null);
+
+  useEffect(() => {
+    if (edited) {
+      editInputRef.current.focus();
+    }
+  }, [edited]);
+
   return (
     <Wrapper>
       <SideTopDownBtn>
@@ -86,7 +193,7 @@ function MainTabsUnder() {
         {/* 작성글 받아오는 컴포넌트 */}
         {/* page/Answer 에서 get 받아서 state 파라미터 전달 || 현 페이지에서 id 값 get 받아서 state 뿌리기  */}
         <p>작성글 받아오기</p>
-
+        <div>{content}</div>
         {/* 코멘트 리스트 컴포넌트*/}
         <AnswerList>
           <p>Comment</p>
@@ -95,14 +202,22 @@ function MainTabsUnder() {
               <p>answer 값을 받아올 칸</p>
               <div>
                 <p>받아올 comment 내용</p>
-                <form
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <button>Edit</button>
-                  <button>Delete</button>
+                <form onSubmit={(e) => e.preventDefault()}>
+                  {!edited ? (
+                    <button onClick={() => onClickEditButton()}>Edit</button>
+                  ) : (
+                    <button onClick={() => EditContentsHandler()}>
+                      Confirm
+                    </button>
+                  )}
+
+                  <button onClick={() => removeContentsHandler()}>
+                    Delete
+                  </button>
                 </form>
+                {edited ? (
+                  <textarea onChange={EditInput} ref={editInputRef} />
+                ) : null}
               </div>
               {/* {answerValue.map(() => {
           })} */}
@@ -112,9 +227,11 @@ function MainTabsUnder() {
         {/* 답변 작성 컴포넌트 */}
         <YourAnswer>
           <p>Your Answer</p>
-          <form onSubmit={submitAnswerHandler}>
+          <form>
             <textarea onChange={handleAnswerValue}></textarea>
-            <button type="submit">Post Your Answer</button>
+            <button type="submit" onClick={submitAnswerHandler}>
+              Post Your Answer
+            </button>
           </form>
         </YourAnswer>
       </WriteWrapper>
@@ -164,7 +281,33 @@ const WriteWrapper = styled.div`
 
 const AnswerList = styled.div``;
 
-const AnswerValue = styled.div``;
+const AnswerValue = styled.div`
+  button {
+    border: none;
+    margin-right: 0.2rem;
+    background-color: #ffffff;
+    color: #f48225;
+    cursor: pointer;
+
+    :hover {
+      background-color: #e3e6e8;
+    }
+
+    :last-child {
+      color: #fc3807;
+      :hover {
+        background-color: #e3e6e8;
+      }
+    }
+  }
+
+  textarea {
+    display: block;
+    width: 500px;
+    height: 300px;
+    resize: none;
+  }
+`;
 
 // 답변 파트
 const YourAnswer = styled.div`
