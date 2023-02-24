@@ -1,5 +1,6 @@
-package com.seb42.stackoverflow.comment.controller;
+package com.seb42.stackoverflow.apis;
 
+import com.seb42.stackoverflow.comment.annotation.LoginUser;
 import com.seb42.stackoverflow.comment.dto.CommentRequestDto;
 import com.seb42.stackoverflow.comment.service.CommentService;
 import com.seb42.stackoverflow.user.dto.UserDto;

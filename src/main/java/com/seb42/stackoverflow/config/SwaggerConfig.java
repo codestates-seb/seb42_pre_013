@@ -42,7 +42,7 @@ public class SwaggerConfig {
                 .globalOperationParameters(globalParamters)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.seb42.stackoverflow.comment.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.seb42.stackoverflow.apis"))
                 .paths(PathSelectors.any())
                 .build();
     }

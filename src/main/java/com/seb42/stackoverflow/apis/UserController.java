@@ -1,4 +1,4 @@
-package com.seb42.stackoverflow.user.controller;
+package com.seb42.stackoverflow.apis;
 
 import com.seb42.stackoverflow.user.dto.*;
 import com.seb42.stackoverflow.user.entity.User;

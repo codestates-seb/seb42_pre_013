@@ -1,4 +1,4 @@
-package com.seb42.stackoverflow.board.controller;
+package com.seb42.stackoverflow.apis;
 
 import com.seb42.stackoverflow.board.dto.BoardPatchDto;
 import com.seb42.stackoverflow.board.dto.BoardPostDto;
