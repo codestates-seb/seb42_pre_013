@@ -1,5 +1,6 @@
 package com.seb42.stackoverflow.comment.entity;
 
+import com.seb42.stackoverflow.board.entity.Board;
 import com.seb42.stackoverflow.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +24,7 @@ public class Comment {
     private Long id;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String comment; // 댓글 내용
+    private String comment;
 
     @Column(name = "created_date")
     @CreatedDate
@@ -34,12 +35,12 @@ public class Comment {
     private String modifiedDate;
 
     @ManyToOne
-    @JoinColumn(name = "posts_id")
-    private Posts posts;
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user; // 작성자
+    private User user;
     public void update(String comment) {
         this.comment = comment;
     }

@@ -1,7 +1,7 @@
 package com.seb42.stackoverflow.comment.dto;
 
+import com.seb42.stackoverflow.board.entity.Board;
 import com.seb42.stackoverflow.comment.entity.Comment;
-import com.seb42.stackoverflow.comment.entity.Posts;
 import com.seb42.stackoverflow.user.entity.User;
 import lombok.*;
 
@@ -18,7 +18,7 @@ public class CommentRequestDto {
     private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
     private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
     private User user;
-    private Posts posts;
+    private Board board;
 
     public Comment toEntity() {
         Comment comments = Comment.builder()
@@ -27,7 +27,7 @@ public class CommentRequestDto {
                 .createdDate(createdDate)
                 .modifiedDate(modifiedDate)
                 .user(user)
-                .posts(posts)
+                .board(board)
                 .build();
 
         return comments;
