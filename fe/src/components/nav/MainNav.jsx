@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import stackOverflow from "../../assets/img/stackOverFlowIcon.png";
 import menuBar from "../../assets/svg/bars-solid.svg";
 import searchIcon from "../../assets/svg/magnifying-glass-solid.svg";
 import stackExchange from "../../assets/svg/logo_stack-exchange.svg";
 import { Link } from "react-router-dom";
+import LogoutModal from "./LogoutModal";
 
 function LogoutNav() {
+  // 로그아웃 모달창을 열고 닫기 위한 useState
+  const [modal, setModal] = useState(false);
+
+  // 로그아웃 모달창을 닫기 위해 내려주는 상태변경함수
+  const handleCloseModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <>
       <NavTop />
@@ -57,10 +66,17 @@ function LogoutNav() {
               alt="Help Center and other resources"
             />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setModal(!modal);
+            }}
+          >
             <img src={stackExchange} alt="A list of Stack Exchange sites" />
           </button>
         </Buttons>
+        {modal === true ? (
+          <LogoutModal handleButtonClick={handleCloseModal} />
+        ) : null}
       </WrapperNav>
     </>
   );

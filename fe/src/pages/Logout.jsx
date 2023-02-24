@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LogoutNav from "../components/nav/LogoutNav";
+import { Link } from "react-router-dom";
 
 function Logout() {
   return (
@@ -86,10 +87,12 @@ function Logout() {
             </div>
           </LogoutAll>
           <LogoutAndCancel>
-            <LogoutButton>Log out</LogoutButton>
-            <CancelButton href="https://stackoverflow.com/">
-              Cancel
-            </CancelButton>
+            <Link to="/">
+              <LogoutButton>Log out</LogoutButton>
+            </Link>
+            <Link to="/main">
+              <CancelButton>Cancel</CancelButton>
+            </Link>
           </LogoutAndCancel>
           <Caution>
             If you’re on a shared computer, remember to log out of your Open ID
