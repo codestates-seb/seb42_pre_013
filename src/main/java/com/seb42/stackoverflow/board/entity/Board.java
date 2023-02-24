@@ -13,11 +13,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 @Entity
 public class Board {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long boardId;
 
     @ManyToOne
@@ -34,19 +34,22 @@ public class Board {
     @Column(nullable = false)
     private String content;
 
-    @Builder.Default
+    //@Builder.Default
+    @Column(nullable = false)
     private LocalDateTime regdate = LocalDateTime.now();
 
 
-    public enum BoardStatus{
-        BOARD_NOT_FOUND("존재하지 않는 게시글"),
-        BOARD_EXIST("존재하는 게시글");
-
-        @Getter
-        private String status;
-
-        BoardStatus(String status){
-            this.status = status;
-        }
-    }
+//    private BoardStatus boardStatus = BoardStatus.BOARD_NOT_FOUND;
+//
+//    public enum BoardStatus{
+//        BOARD_NOT_FOUND("존재하지 않는 게시글"),
+//        BOARD_EXIST("존재하는 게시글");
+//
+//        @Getter
+//        private String status;
+//
+//        BoardStatus(String status){
+//            this.status = status;
+//        }
+//    }
 }

@@ -10,7 +10,7 @@ public class BoardResponseDto {
     private long boardId;
     private String title;
     private String content;
-    private Board.BoardStatus boardStatus;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    //private Board.BoardStatus boardStatus;
 }

@@ -1,7 +1,6 @@
 package com.seb42.stackoverflow.board.service;
 
 import com.seb42.stackoverflow.board.entity.Board;
-import com.seb42.stackoverflow.board.mapper.BoardMapper;
 import com.seb42.stackoverflow.board.repository.BoardRepository;
 import com.seb42.stackoverflow.exception.BusinessLogicException;
 import com.seb42.stackoverflow.exception.ExceptionCode;
@@ -14,17 +13,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Objects;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class BoardService {
-    private final BoardRepository boardRepository;
-    private final BoardMapper boardMapper;
     private final UserService userService;
+    private final BoardRepository boardRepository;
 
+    //게시글 생성
     public Board saveBoard(Board board, long userId){
         User findUser = userService.findVerifiedUser(userId);
         Board makeBoard = createBoard(board, findUser);
@@ -33,10 +32,11 @@ public class BoardService {
 
     public Board createBoard(Board board, User user){
         board.setUser(user);
-        //member.getBoards().add(board);
+        user.getBoards().add(board);
         return board;
     }
 
+    //게시글 수정
     public Board updateBoard(Board board, long userId){
         Board findBoard = findVerifiedBoard(board.getBoardId());
 
@@ -46,13 +46,13 @@ public class BoardService {
 
         board.setTitle(board.getTitle());
         board.setContent(board.getContent());
-        //findBoard.setModifiedAt(LocalDateTime.now());
+        findBoard.setRegdate(LocalDateTime.now());
 
         return boardRepository.save(findBoard);
     }
 
+    //게시글 찾기
     public Board findBoard(long boardId){
-
         return findVerifiedBoard(boardId);
     }
 
@@ -61,15 +61,17 @@ public class BoardService {
     }
 
     private Board findVerifiedBoard(long boardId){
-        return boardRepository.findById(boardId)
+        Optional<Board> optionalBoard = boardRepository.findByBoardId(boardId);
+        Board findBoard = boardRepository.findByBoardId(boardId)
                 .orElseThrow(()->new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND));
+        return findBoard;
     }
 
-    private void VerifiedNoBoard(Page<Board> findAllBoard){
-        if(findAllBoard.getTotalElements() == 0){
-            throw new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND);
-        }
-    }
+//    private void VerifiedNoBoard(Page<Board> findAllBoard){
+//        if(findAllBoard.getTotalElements() == 0){
+//            throw new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND);
+//        }
+//    }
 
 //    public Page<Board> searchBoards(String keyword,int page, int size, String sort){
 //        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort).descending());
@@ -82,12 +84,16 @@ public class BoardService {
 //        return boards;
 //    }
 
+    //게시글 삭제
     public void deleteBoard(long boardId, long userId){
-        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+        Optional<Board> optionalBoard = boardRepository.findByBoardId(boardId);
         optionalBoard.ifPresentOrElse(board -> {
-            if(!Objects.equals(board.getUser().getUserId(), userId)){
+            if(board.getUser().getUserId() != userId){
                 throw new BusinessLogicException(ExceptionCode.USER_UNAUTHORIZED);
             }
+//            if(!Objects.equals(board.getUser().getUserId(), userId)){
+//                throw new BusinessLogicException(ExceptionCode.USER_UNAUTHORIZED);
+//            }
             boardRepository.delete(board);
         }, () -> {
             return;

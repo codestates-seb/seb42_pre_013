@@ -10,5 +10,5 @@ public class BoardPatchDto {
     private long boardId;
     private String title;
     private String content;
-    private Board.BoardStatus boardStatus;
+    //private Board.BoardStatus boardStatus;
 }

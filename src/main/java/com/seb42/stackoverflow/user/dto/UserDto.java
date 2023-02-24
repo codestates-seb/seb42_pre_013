@@ -2,6 +2,7 @@ package com.seb42.stackoverflow.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
@@ -40,7 +41,10 @@ public class UserDto {
 
     @Getter
     @AllArgsConstructor
+    @NoArgsConstructor
     public static class LoginDto{
+        private long userId;
+
         @NotNull
         @Email
         private String email;
