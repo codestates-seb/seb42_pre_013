@@ -48,9 +48,9 @@ public class UserDto {
         @NotNull
         private String password;
 
-        private String name;
+        private static String name;
 
-        public String getName() {
+        public static String getName() {
             return name;
         }
     }
