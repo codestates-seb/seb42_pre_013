@@ -43,7 +43,6 @@ function App() {
     fetchData();
   }, []);
 
-  console.log(mainContentsValue);
   return (
     <BrowserRouter>
       <Routes>
@@ -60,6 +59,15 @@ function App() {
         />
         <Route
           path="/answer"
+          element={
+            <Answer
+              mainContentsValue={mainContentsValue}
+              setMainContentsValue={setMainContentsValue}
+            />
+          }
+        />
+        <Route
+          path="/answer/:ids"
           element={<Answer mainContentsValue={mainContentsValue} />}
         />
       </Routes>

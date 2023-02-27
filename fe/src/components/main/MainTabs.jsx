@@ -5,27 +5,6 @@ import Main from "../../pages/Main";
 import MainPost from "./MainPost";
 
 function MainTabs({ mainContentsValue }) {
-  const [post, setPost] = useState([
-    {
-      id: "1",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "2",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-    {
-      id: "3",
-      title: "Proper way to load environment variable in runtime javascript?",
-      keyword: "js",
-      user: "Kim",
-    },
-  ]);
-
   return (
     <Wrapper>
       <TopQuestions>
@@ -46,10 +25,18 @@ function MainTabs({ mainContentsValue }) {
           <button>Month</button>
         </form>
       </TopQuestionsUnder>
-      <MainPosts mainContentsValue={mainContentsValue}>
-        {post &&
-          post.map((el) => {
-            return <MainPost post={el} key={el.id} />;
+      <MainPosts>
+        {mainContentsValue &&
+          mainContentsValue.map((el) => {
+            return (
+              <Link
+                to={`/answer/${el.id}`}
+                key={el.id}
+                style={{ textDecoration: "none" }}
+              >
+                <MainPost mainContentsValue={el} key={el.id} />
+              </Link>
+            );
           })}
       </MainPosts>
     </Wrapper>

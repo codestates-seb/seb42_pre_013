@@ -3,8 +3,8 @@ import styled from "styled-components";
 import stackOverflow from "../../assets/img/stackOverFlowIcon.png";
 import menuBar from "../../assets/svg/bars-solid.svg";
 import searchIcon from "../../assets/svg/magnifying-glass-solid.svg";
-import stackExchange from "../../assets/svg/logo_stack-exchange.svg"
-
+import stackExchange from "../../assets/svg/logo_stack-exchange.svg";
+import { Link } from "react-router-dom";
 function LogoutNav() {
   return (
     <>
@@ -14,14 +14,18 @@ function LogoutNav() {
           <img src={menuBar} alt="menuBar" />
         </Icon>
         <WrapperEtc></WrapperEtc>
+
         <TitleImg>
           <img src={stackOverflow} alt="stackOverflow Logo" />
         </TitleImg>
-        <Title>
-          <p>
-            stack<b>overflow</b>
-          </p>
-        </Title>
+
+        <Link to="/main" style={{ textDecoration: "none", color: "black" }}>
+          <Title>
+            <p>
+              stack<b>overflow</b>
+            </p>
+          </Title>
+        </Link>
         <NavTab>
           {/* <a href="https://stackoverflow.co/">About</a> */}
           <p>Products</p>
@@ -33,7 +37,7 @@ function LogoutNav() {
         </Search>
         <Buttons>
           <div>
-          <button>User</button>
+            <button>User</button>
           </div>
           <button>
             <img
@@ -46,17 +50,15 @@ function LogoutNav() {
               src="https://cdn-icons-png.flaticon.com/512/8660/8660026.png"
               alt="Recent achievements"
             />
-          </button>            <button>
+          </button>{" "}
+          <button>
             <img
               src="https://cdn-icons-png.flaticon.com/512/4467/4467515.png"
               alt="Help Center and other resources"
             />
-          </button>            
+          </button>
           <button>
-            <img
-              src={stackExchange}
-              alt="A list of Stack Exchange sites"
-            />
+            <img src={stackExchange} alt="A list of Stack Exchange sites" />
           </button>
         </Buttons>
       </WrapperNav>
@@ -150,11 +152,10 @@ const Search = styled.div`
   }
 `;
 
-
 const Buttons = styled.div`
   display: flex;
   justify-content: space-around;
-  &>div {
+  & > div {
     width: 48px;
     height: 47px;
     display: flex;
@@ -175,11 +176,11 @@ const Buttons = styled.div`
       color: #ffffff;
     }
   }
-  img{
+  img {
     width: 20px;
     height: 20px;
   }
-  &>button {
+  & > button {
     height: 47px;
     padding: 0 10px;
     border: none;

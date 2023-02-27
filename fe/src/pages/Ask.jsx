@@ -5,12 +5,24 @@ import pencil from "../assets/img/pencil.png";
 import Footer from "../components/footer/Footer";
 import BlueBoxContents from "../components/ask/BlueBoxContents";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Ask({ mainContentsValue }) {
+  // 작성글 ID
+  //   const contentsId = useRef(4);
+  //   const contentsId = mainContentsValue.length++;
+  const contentsId = Math.random().toString(36);
+  //   console.log(mainContentsValue);
+
   // title , contents 값
   const [titleValue, setTitleValue] = useState("");
   const [contentsValue, setContentsValue] = useState("");
+  const [idValue, setIdValue] = useState(contentsId);
+
+  //   console.log(idValue.current);
+  //   console.log(mainContentsValue.length);
+  //   console.log(mainContentsValue.length++);
+
   // title 값 받아오기
   const TitleValue = (e) => {
     setTitleValue(e.target.value);
@@ -22,26 +34,17 @@ function Ask({ mainContentsValue }) {
     console.log(contentsValue);
   };
 
-  // id 구조할당분해
-  //   const {id} = mainContentsValue
-
-  // 작성글 ID
-  const contentsId = useRef(4);
-
   // navigate 받기
   const navigate = useNavigate();
 
   //! answer 작성한 것 서버에 전송 POST
   const submitContentsHandler = (e) => {
     if (!titleValue || !contentsValue) {
-      //   e.preventDefault();
       alert("empty value.. Write your answer!");
     } else {
-      //   e.preventDefault();
-
       let data = JSON.stringify({
         //! 키 값은 api 명세서에 따라 변경
-        id: contentsId.current,
+        id: idValue,
         title: titleValue,
         contents: contentsValue,
       });
@@ -55,17 +58,17 @@ function Ask({ mainContentsValue }) {
       axios
         .post(`http://localhost:4000/ask`, data, header)
         .then((data) => {
+          setIdValue(idValue);
           setTitleValue(titleValue.concat(data));
           setContentsValue(contentsValue.concat(data));
-          contentsId.current += 1;
         })
         .catch((err) => {
           alert("Upload Error");
           console.log(err);
         });
-      //! navigate(`/ask/${id}`); 변경하기
+
       navigate(`/main`);
-      //   window.location.reload();
+      window.location.reload();
     }
   };
 

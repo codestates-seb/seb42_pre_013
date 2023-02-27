@@ -7,7 +7,7 @@ import MainTabs from "../components/answer/MainTabs";
 import Footer from "../components/footer/Footer";
 import MainTabsUnder from "../components/answer/MainTabsUnder";
 
-function Answer() {
+function Answer({mainContentsValue}) {
   return (
     <>
       <MainNav />
@@ -19,11 +19,11 @@ function Answer() {
 
           <MainWrapper>
             <MainTab>
-              <MainTabs />
+              <MainTabs mainContentsValue={mainContentsValue}/>
             </MainTab>
 
             <MainUnderWrapper>
-              <MainTabsUnder />
+              <MainTabsUnder mainContentsValue={mainContentsValue}/>
               <RightSideTabs />
             </MainUnderWrapper>
           </MainWrapper>
