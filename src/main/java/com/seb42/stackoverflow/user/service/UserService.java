@@ -1,24 +1,41 @@
 package com.seb42.stackoverflow.user.service;
 
+import com.seb42.stackoverflow.auth.utils.CustomAuthorityUtils;
 import com.seb42.stackoverflow.exception.BusinessLogicException;
 import com.seb42.stackoverflow.exception.ExceptionCode;
 import com.seb42.stackoverflow.user.entity.User;
 import com.seb42.stackoverflow.user.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       CustomAuthorityUtils authorityUtils) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authorityUtils = authorityUtils;
     }
 
     //가입
     public User createUser(User user){
         verifyExistsEmail(user.getEmail());
+
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        List<String> roles = authorityUtils.createRoles(user.getEmail());
+        user.setRoles(roles);
 
         return userRepository.save(user);
     }

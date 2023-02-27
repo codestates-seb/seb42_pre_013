@@ -13,6 +13,7 @@ public class UserDto {
     @Getter
     @Setter
     @AllArgsConstructor
+    @NoArgsConstructor
     public static class Post{
         @NotBlank
         @Email

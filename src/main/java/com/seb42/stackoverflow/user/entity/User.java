@@ -30,6 +30,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
     @OneToMany(mappedBy = "user")
     private List<Board> boards = new ArrayList<>();
 
@@ -42,5 +45,10 @@ public class User {
 
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    public enum MemberRole {
+        ROLE_USER,
+        ROLE_ADMIN
     }
 }

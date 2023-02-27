@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-24T00:55:03+0900",
-    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11.0.18 (Azul Systems, Inc.)"
+    date = "2023-02-27T02:14:59+0900",
+    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class BoardMapperImpl implements BoardMapper {
@@ -23,13 +23,13 @@ public class BoardMapperImpl implements BoardMapper {
             return null;
         }
 
-        Board.BoardBuilder board = Board.builder();
+        Board board = new Board();
 
-        board.boardId( boardPostDto.getBoardId() );
-        board.title( boardPostDto.getTitle() );
-        board.content( boardPostDto.getContent() );
+        board.setBoardId( boardPostDto.getBoardId() );
+        board.setTitle( boardPostDto.getTitle() );
+        board.setContent( boardPostDto.getContent() );
 
-        return board.build();
+        return board;
     }
 
     @Override
@@ -38,13 +38,13 @@ public class BoardMapperImpl implements BoardMapper {
             return null;
         }
 
-        Board.BoardBuilder board = Board.builder();
+        Board board = new Board();
 
-        board.boardId( boardPatchDto.getBoardId() );
-        board.title( boardPatchDto.getTitle() );
-        board.content( boardPatchDto.getContent() );
+        board.setBoardId( boardPatchDto.getBoardId() );
+        board.setTitle( boardPatchDto.getTitle() );
+        board.setContent( boardPatchDto.getContent() );
 
-        return board.build();
+        return board;
     }
 
     @Override
