@@ -1,25 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import copyBtn from "../../assets/svg/copyBtn.svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+const SERVER_URL = "http://localhost:4000/api/user";
 
 function SignUpForm() {
+  // const [userList, setUserList] = useState(null);
+
+  // const fetchData = async () => {
+  //   const response = await axios.get(SERVER_URL);
+  //   setUserList(response.data);
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const displayName = e.target.displayName.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    await axios.post(SERVER_URL, { displayName, email, password });
+    // fetchData();
+  };
+
   return (
     <>
       <LoginFm>
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <label>Display name</label>
-          <input type="text" required />
+          <input type="text" name="displayName" required />
           <label>Email</label>
-          <input type="email" required />
+          <input type="email" name="email" required />
           <label>Password</label>
-          <input type="password" required />
+          <input type="password" name="password" required />
           <p>
             Passwords must contain at least eight
             <br />
             characters, including at least 1 letter and 1<br />ß number.
           </p>
-          <LoginBtn>Sign up</LoginBtn>
+          <LoginBtn type="submit" value="Sign up" />
           <BottomExplain>
             By clicking “Sign up”, you agree to our
             <a href="https://stackoverflow.com/legal/terms-of-service/public">
@@ -94,7 +117,7 @@ const BottomExplain = styled.p`
   }
 `;
 
-const LoginBtn = styled.button`
+const LoginBtn = styled.input`
   width: 250px;
   height: 41px;
   font-size: 13px;
