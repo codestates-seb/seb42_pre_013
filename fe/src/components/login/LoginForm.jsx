@@ -11,6 +11,8 @@ function LoginForm() {
 
   const LoginHandler = (e) => {
     e.preventDefault();
+    console.log(e.target.email);
+
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -20,9 +22,12 @@ function LoginForm() {
       .then((response) => {
         // 로그인 성공 시 localStorage에 토큰 저장
         // 메인 페이지로 이동
-        localStorage.setItem("loginToken", response.ACCESS_TOKEN);
+        localStorage.setItem("token", response.ACCESS_TOKEN);
         alert("성공적으로 로그인 했습니다.");
+
+        // alert(`${res.data.username}로 로그인 했습니다! `);
         navigate("/main");
+        window.location.reload();
       })
       .catch((error) => {
         // 실패 시 알림

@@ -8,7 +8,7 @@ function Logout() {
 
   // 로그아웃 기능 구현
   const logoutHandler = () => {
-    let token = localStorage.getItem("loginToken");
+    // let token = localStorage.getItem("token");
 
     localStorage.clear();
     alert("성공적으로 로그아웃 했습니다.");
