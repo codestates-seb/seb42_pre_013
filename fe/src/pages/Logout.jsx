@@ -1,9 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import LogoutNav from "../components/nav/LogoutNav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Logout() {
+  const navigate = useNavigate();
+
+  // 로그아웃 기능 구현
+  const logoutHandler = () => {
+    let token = localStorage.getItem("loginToken");
+
+    localStorage.clear();
+    alert("성공적으로 로그아웃 했습니다.");
+    navigate("/");
+  };
   return (
     <>
       <LogoutNav />
@@ -12,7 +22,7 @@ function Logout() {
           Clicking "Log out" will log you out of the following domains on this
           device:
         </H1>
-        <LogoutForm>
+        <LogoutForm onSubmit={logoutHandler}>
           <ul>
             <li>
               <a href="https://askubuntu.com">
@@ -87,9 +97,7 @@ function Logout() {
             </div>
           </LogoutAll>
           <LogoutAndCancel>
-            <Link to="/">
-              <LogoutButton>Log out</LogoutButton>
-            </Link>
+            <LogoutButton type="submit" value="Log out" />
             <Link to="/main">
               <CancelButton>Cancel</CancelButton>
             </Link>
@@ -194,6 +202,7 @@ const CheckboxDiv = styled.div`
 
 const LogoutAndCancel = styled.div`
   display: flex;
+  input,
   button {
     width: 66.16px;
     height: 37.78px;
@@ -206,7 +215,7 @@ const LogoutAndCancel = styled.div`
   }
 `;
 
-const LogoutButton = styled.button`
+const LogoutButton = styled.input`
   color: #ffffff;
   background-color: #0a95ff;
   &:active {

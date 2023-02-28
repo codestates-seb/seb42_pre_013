@@ -1,47 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
-// 쿠키 함수(토큰을 저장하기 위함)
-const cookies = new Cookies();
-// 쿠키에 값을 저장할 때
-// option에는 쿠키의 만료기한이 들어간다. -1을 해주면 쿠키가 지워진다.
-const setCookie = (name, value, option) => {
-  return cookies.set(name, value, { ...option });
-};
-// 쿠키에 있는 값을 꺼낼 때
-const getCookie = (name) => {
-  return cookies.get(name);
-};
-// 쿠키를 지울 때
-const removeVookie = (name) => {
-  return cookies.remove(name);
-};
-
-// 서버 URL을 할당하는 변수는
-const SERVER_URL = "http://localhost:4000/api/users/login";
+// 서버 URL을 할당하는 변수
+const SERVER_URL = "http://localhost:4000/users/login";
 
 function LoginForm() {
-  const onSubmitHandler = async (e) => {
+  const navigate = useNavigate();
+
+  const LoginHandler = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const response = await axios.post(SERVER_URL, { email, password });
 
-    // response에서 토큰을 꺼낸다.
-    const accessToken = response.data.token;
-
-    //  setCookies 함수의 첫번째 인자는 쿠키 이름, 두번째 인자는 값.
-    setCookie("is_login", `${accessToken}`);
-    console.log(response);
-    return response.data;
+    axios
+      .post(SERVER_URL, { email, password })
+      .then((response) => response.json())
+      .then((response) => {
+        // 로그인 성공 시 localStorage에 토큰 저장
+        // 메인 페이지로 이동
+        localStorage.setItem("loginToken", response.ACCESS_TOKEN);
+        alert("성공적으로 로그인 했습니다.");
+        navigate("/main");
+      })
+      .catch((error) => {
+        // 실패 시 알림
+        alert("ID 또는 비밀번호가 틀립니다.");
+      });
   };
 
   return (
     <>
       <LoginFm>
-        <form onSubmit={onSubmitHandler}>
+        <form onSubmit={LoginHandler}>
           <label>Email</label>
           <input type="email" name="email" required />
           <label>Password</label>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import copyBtn from "../../assets/svg/copyBtn.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const SERVER_URL = "http://localhost:4000/api/user";
+const SERVER_URL = "http://localhost:4000/users/signup";
 
 function SignUpForm() {
   // const [userList, setUserList] = useState(null);
