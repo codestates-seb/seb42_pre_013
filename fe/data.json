@@ -9,29 +9,30 @@
   ],
   "ask": [
     {
-      "id": "0.zzp7p4m4p9",
-      "title": "post 등록",
-      "contents": "id 의 난수화!"
+      "id": "0c0bbeb5-5e53-4151-86a7-8310573b7946",
+      "title": "댓글 삭제가 안되네",
+      "contents": "ㅜ",
+      "answer": [
+        {
+          "id": "25f03ed2-5aed-4bee-880a-6b3013b6e9da",
+          "answers": "잠정 중단\n"
+        },
+        {
+          "id": "f6b2d9fa-be28-493b-a958-2c31c3ad0715",
+          "answers": "삭제 접근"
+        }
+      ]
     },
     {
-      "id": "0.b2cbbnjjjx",
-      "title": "2번째",
-      "contents": "ㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅇㄹㄴㅇㄹ"
-    },
-    {
-      "id": "0.2d5r8vebe2q",
-      "title": "수정은 페이지 들어가서, 내용만 수정!",
-      "contents": "내용을 바꾸고 Confirm 누르기\n"
-    },
-    {
-      "id": "0.9u8ya9bl0ow",
-      "title": "답변 은 아직",
-      "contents": "0.0.0"
+      "id": "b23e5469-f724-4b46-9a4b-fb0b85210a5a",
+      "title": "1234",
+      "contents": "코멘트 수정 하기\n",
+      "answer": [
+        {
+          "id": "86297864-f47a-4c20-9e3e-e5540dcda640",
+          "answers": "ㅁㄴㅇㄹㅁㄴㅇㄹ"
+        }
+      ]
     }
-  ],
-  "answer": {
-    "id": 1,
-    "answer": "123412341234",
-    "askId": "4"
-  }
+  ]
 }

@@ -5,40 +5,36 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 function MainTabs({ mainContentsValue, setMainContentsValue }) {
   const { id } = mainContentsValue;
-  
-  // /${ids} 
+
+  // /${ids}
   const { ids } = useParams();
 
-  console.log(mainContentsValue);
+  // console.log(mainContentsValue);
   const navigate = useNavigate();
 
+  // ask 의 contents 받아와서 저장하기
+  const [askTitle, setAskTitle] = useState("");
+  // //! 답변 작성 받아오기 GET
+  const fetchData = async () => {
+    await axios
+      .get(`http://localhost:4000/ask/${ids}`)
+      .then((res) => {
+        setAskTitle(res.data.title);
+      })
+      .catch((error) => console.log(error));
+  };
 
-    // ask 의 contents 받아와서 저장하기
-    const [askTitle, setAskTitle] = useState("")
-    // //! 답변 작성 받아오기 GET
-    const fetchData = async () => {
-      await axios
-        .get(`http://localhost:4000/ask/${ids}`)
-        .then((res) => {
-          console.log(res.data.title);
-          setAskTitle(res.data.title)
-        })
-        .catch((error) => console.log(error));
-    };
-  
-    // 페이지 오거나, 어짜피 작성하면 answer 페이지로 오기때문에 리로딩 > get 갱신
-    useEffect(() => {
-      fetchData();
-    }, []);
+  // 페이지 오거나, 어짜피 작성하면 answer 페이지로 오기때문에 리로딩 > get 갱신
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   //! 삭제 DELETE -> 해보고 안되면 useCallback((id) => {}, [answerValue])
   const deleteHandler = (e) => {
-
     axios
       .delete(`http://localhost:4000/ask/${ids}`)
       .then((res) => {
         console.log(res);
-        window.location.reload();
       })
       .catch((err) => {
         alert("Upload Error");
@@ -46,6 +42,7 @@ function MainTabs({ mainContentsValue, setMainContentsValue }) {
       });
     // `/answer/${id}`
     navigate(`/main`);
+    window.location.reload();
   };
 
   return (

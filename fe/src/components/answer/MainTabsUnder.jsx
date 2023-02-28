@@ -4,13 +4,14 @@ import top from "../../assets/img/icons8-sort-up-50.png";
 import down from "../../assets/img/icons8-sort-down-50.png";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import CommentLists from "./CommentLists";
 
 function MainTabsUnder({ mainContentsValue }) {
   // answer 작성 값
-  const [contentsValue, setContentsValue] = useState("");
+  const [contentsValue, setContentsValue] = useState([]);
   // answer 작성 값 id > 1부터 시작
-  const answerId = useRef(1);
 
+  const answerId = Math.random().toString(36);
   const navigate = useNavigate();
 
   const { ids } = useParams();
@@ -106,14 +107,14 @@ function MainTabsUnder({ mainContentsValue }) {
   //TODO answer
   // //! answer GET
   // ask 의 contents 받아와서 저장하기
-  const [answerLists, setAnswerLists] = useState("");
+  const [answerLists, setAnswerLists] = useState([]);
   //! ask -> 답변 작성 받아오기 GET
   const fetchDataAnswer = () => {
     axios
-      .get(`http://localhost:4000/ask/${id}/answer`)
+      .get(`http://localhost:4000/ask/${ids}`)
       .then((res) => {
-        console.log(res.data);
-        // setAnswerLists(res.data.contents);
+        // console.log(res.data.answer);
+        setAnswerLists(res.data.answer);
       })
       .catch((error) => console.log(error));
   };
@@ -123,7 +124,7 @@ function MainTabsUnder({ mainContentsValue }) {
     fetchDataAnswer();
   }, []);
 
-  //! answer 작성한 것 서버에 전송 POST
+  //! answer 작성한 것 서버에 전송 Patch
   // const answerId = mainContentsValue.answers.length++;
   const [idValue, setIdValue] = useState(answerId);
 
@@ -135,10 +136,11 @@ function MainTabsUnder({ mainContentsValue }) {
       e.preventDefault();
 
       let data = JSON.stringify({
-        answers: [
+        answer: [
+          ...answerLists,
           {
-            id: answerId.current,
-            answer: contentsValue,
+            id: crypto.randomUUID(),
+            answers: contentsValue,
           },
         ],
       });
@@ -150,12 +152,10 @@ function MainTabsUnder({ mainContentsValue }) {
       };
 
       axios
-        .post(`http://localhost:4000/ask/${ids}`, data, header)
+        .patch(encodeURI(`http://localhost:4000/ask/${ids}`), data, header)
         .then((data) => {
-          console.log(data);
-          // setIdValue(idValue);
+          setIdValue(idValue.concat(data));
           setContentsValue(contentsValue.concat(data));
-          answerId.current += 1;
         })
         .catch((err) => {
           alert("Upload Error");
@@ -163,7 +163,7 @@ function MainTabsUnder({ mainContentsValue }) {
         });
 
       navigate(`/answer/${ids}`);
-      // window.location.reload();
+      window.location.reload();
     }
   };
 
@@ -223,8 +223,21 @@ function MainTabsUnder({ mainContentsValue }) {
         </AnswerList>
         {/* 답변 작성 컴포넌트 */}
         <YourAnswer>
-          <p>Comment</p>
-          <p>Your Answer</p>
+          <p style={{ margin: "20px 0 20px 0" }}>Comment</p>
+          <div>
+            {answerLists.map((el) => {
+              return (
+                <CommentLists
+                  key={el.id}
+                  answers={el.answers}
+                  answerLists={answerLists}
+                  setAnswerLists={setAnswerLists}
+                />
+              );
+            })}
+          </div>
+
+          <p style={{ margin: "30px 0 10px 0" }}>Your Answer</p>
           <form>
             <textarea onChange={handleAnswerValue}></textarea>
             <button type="submit" onClick={submitAnswerHandler}>

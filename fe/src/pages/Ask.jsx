@@ -11,8 +11,9 @@ function Ask({ mainContentsValue }) {
   // 작성글 ID
   //   const contentsId = useRef(4);
   //   const contentsId = mainContentsValue.length++;
-  const contentsId = Math.random().toString(36);
-  //   console.log(mainContentsValue);
+//   const contentsId = Math.random().toString(36);
+  const contentsId = crypto.randomUUID()
+
 
   // title , contents 값
   const [titleValue, setTitleValue] = useState("");
@@ -47,6 +48,7 @@ function Ask({ mainContentsValue }) {
         id: idValue,
         title: titleValue,
         contents: contentsValue,
+        answer: [],
       });
 
       const header = {
