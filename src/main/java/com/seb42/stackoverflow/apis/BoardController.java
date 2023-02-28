@@ -20,7 +20,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "stackoverflow/board")
+@RequestMapping("/api/board")
 @Validated
 @RequiredArgsConstructor
 public class BoardController {
