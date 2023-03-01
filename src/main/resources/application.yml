@@ -10,7 +10,7 @@ spring:
     show-sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-pp013.cyzeevtx5cn7.ap-northeast-2.rds.amazonaws.com:3306/test?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://database-pp013.cyzeevtx5cn7.ap-northeast-2.rds.amazonaws.com:13306/test?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: admin
     password: database
   #h2:
