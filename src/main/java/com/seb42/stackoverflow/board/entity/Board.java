@@ -25,7 +25,7 @@ public class Board {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "comment")
+    @JoinColumn(name = "comment_id")
     private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)
