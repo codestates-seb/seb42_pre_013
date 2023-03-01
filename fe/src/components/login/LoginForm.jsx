@@ -2,37 +2,53 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-// 서버 URL을 할당하는 변수
-const SERVER_URL = "http://localhost:4000/users/login";
+import { useCookies } from "react-cookie";
 
 function LoginForm() {
   const navigate = useNavigate();
 
-  const LoginHandler = (e) => {
+  // 쿠키 설정
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  const LoginHandler = async (e) => {
     e.preventDefault();
     console.log(e.target.email);
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    axios
-      .post(SERVER_URL, { email, password })
-      .then((response) => response.json())
-      .then((response) => {
-        // 로그인 성공 시 localStorage에 토큰 저장
-        // 메인 페이지로 이동
-        localStorage.setItem("token", response.ACCESS_TOKEN);
-        alert("성공적으로 로그인 했습니다.");
-
-        // alert(`${res.data.username}로 로그인 했습니다! `);
-        navigate("/main");
-        window.location.reload();
-      })
-      .catch((error) => {
-        // 실패 시 알림
-        alert("ID 또는 비밀번호가 틀립니다.");
+    try {
+      const { data } = await axios.post("http://localhost:8000/login", {
+        email,
+        password,
       });
+      // path 전역 사용
+      setCookie("accessToken", data["accessToken"], { path: "/" });
+      navigate("/main");
+      window.location.reload()
+    } catch (error) {
+      alert("로그인 실패! 이메일,비밀번호를 정확히 입력해주세요.");
+      console.log(error);
+    }
+
+    // const {data } = axios
+    //   .post(SERVER_URL, { email, password })
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     // 로그인 성공 시 localStorage에 토큰 저장
+    //     // 메인 페이지로 이동
+    //     setCookie('accessToken', data['accessToken'], { path: '/' })
+    //     // localStorage.setItem("token", response.ACCESS_TOKEN);
+    //     alert("성공적으로 로그인 했습니다.");
+
+    //     // alert(`${res.data.username}로 로그인 했습니다! `);
+    //     navigate("/main");
+    //     window.location.reload();
+    //   })
+    //   .catch((error) => {
+    //     // 실패 시 알림
+    //     alert("ID 또는 비밀번호가 틀립니다.");
+    //   });
   };
 
   return (

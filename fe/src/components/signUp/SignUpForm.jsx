@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import copyBtn from "../../assets/svg/copyBtn.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const SERVER_URL = "http://localhost:4000/users/signup";
+//! SignUp POST URL
+const SERVER_URL = "http://localhost:8000/register";
 
-function SignUpForm() {
-  // const [userList, setUserList] = useState(null);
-
-  // const fetchData = async () => {
-  //   const response = await axios.get(SERVER_URL);
-  //   setUserList(response.data);
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+function SignUpForm({ setCookie }) {
+  const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    const displayName = e.target.displayName.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    await axios.post(SERVER_URL, { displayName, email, password });
-    // fetchData();
+    try {
+      e.preventDefault();
+      const displayName = e.target.displayName.value;
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+
+      const { data } = await axios.post(SERVER_URL, {
+        displayName,
+        email,
+        password,
+      });
+      console.log(data);
+      // setCookie("accessToken", data["accessToken"], { path: "/" });
+
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      alert("닉네임, 이메일, 비밀번호를 다시 확인해주세요");
+    }
   };
 
   return (

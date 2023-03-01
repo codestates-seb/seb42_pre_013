@@ -6,7 +6,7 @@ import SignUpButtons from "../components/signUp/SignUpButtons";
 import SignUpLeftExplain from "../components/signUp/SignUpLeftExplain";
 
 
-function SignUp() {
+function SignUp({setCookie}) {
   return (
     <>
       <LoginNav />
@@ -16,7 +16,7 @@ function SignUp() {
 
         <WrapperRight>
           <SignUpButtons />
-          <SignUpForm />
+          <SignUpForm setCookie={setCookie}/>
         </WrapperRight>
 
       </Wrapper>

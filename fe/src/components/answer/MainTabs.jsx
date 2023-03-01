@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function MainTabs({ mainContentsValue, setMainContentsValue }) {
   const { id } = mainContentsValue;
@@ -14,10 +15,18 @@ function MainTabs({ mainContentsValue, setMainContentsValue }) {
 
   // ask 의 contents 받아와서 저장하기
   const [askTitle, setAskTitle] = useState("");
+
+  const [cookies] = useCookies()
   // //! 답변 작성 받아오기 GET
   const fetchData = async () => {
+    const header = {
+      headers: {
+        Authorization: `Bearer ${cookies["accessToken"]}`,
+      },
+    };
+
     await axios
-      .get(`http://localhost:4000/ask/${ids}`)
+      .get(`http://localhost:8000/ask/${ids}`, header)
       .then((res) => {
         setAskTitle(res.data.title);
       })
@@ -31,13 +40,19 @@ function MainTabs({ mainContentsValue, setMainContentsValue }) {
 
   //! 삭제 DELETE -> 해보고 안되면 useCallback((id) => {}, [answerValue])
   const deleteHandler = (e) => {
+    const header = {
+      headers: {
+        Authorization: `Bearer ${cookies["accessToken"]}`,
+      },
+    };
+
     axios
-      .delete(`http://localhost:4000/ask/${ids}`)
+      .delete(`http://localhost:8000/ask/${ids}`, header)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        alert("Upload Error");
+        alert("Delete Error");
         console.log(err);
       });
     // `/answer/${id}`

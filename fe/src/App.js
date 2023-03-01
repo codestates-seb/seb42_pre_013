@@ -8,15 +8,13 @@ import Ask from "./pages/Ask";
 import Answer from "./pages/Answer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+
 function App() {
   // title , contents 저장 값
   const [mainContentsValue, setMainContentsValue] = useState([]);
 
-  // 작성글 ID
-  // const contentsId = useRef(1);
-
-  // navigate 받기
-  // const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   //! 제목, 타이틀 받아오기 GET
   //         "Content-Type": `application/json`,
@@ -26,11 +24,12 @@ function App() {
         "Cache-Control": "no-cache",
         Pragma: "no-cache",
         Expires: "0",
+        Authorization: `Bearer ${cookies["accessToken"]}`,
       },
     };
 
     await axios
-      .get(`http://localhost:4000/ask`, header)
+      .get(`http://localhost:8000/ask`, header)
       .then((res) => {
         setMainContentsValue(res.data);
         // console.log(res.data);
@@ -47,8 +46,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/logout"
+          element={<Logout removeCookie={removeCookie} />}
+        />
+        <Route path="/signup" element={<SignUp setCookie={setCookie} />} />
         <Route
           path="/main"
           element={<Main mainContentsValue={mainContentsValue} />}

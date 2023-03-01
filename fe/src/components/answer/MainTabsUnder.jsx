@@ -5,6 +5,7 @@ import down from "../../assets/img/icons8-sort-down-50.png";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import CommentLists from "./CommentLists";
+import { useCookies } from "react-cookie";
 
 function MainTabsUnder({ mainContentsValue }) {
   // answer 작성 값
@@ -30,6 +31,9 @@ function MainTabsUnder({ mainContentsValue }) {
   //! contentsValue 구조할당분해 ->
   const { id, content } = contentsValue;
 
+  // 쿠키 받아오기
+  const [cookies, setCookie, removeCookie] = useCookies();
+
   // 수정 값 받아오기
   const EditInput = (e) => {
     setNewText(e.target.value);
@@ -45,10 +49,15 @@ function MainTabsUnder({ mainContentsValue }) {
   const [askContents, setAskContents] = useState("");
   //! ask -> 답변 작성 받아오기 GET
   const fetchData = async () => {
+    const header = {
+      headers: {
+        Authorization: `Bearer ${cookies["accessToken"]}`,
+      },
+    };
+
     await axios
-      .get(`http://localhost:4000/ask/${ids}`)
+      .get(`http://localhost:8000/ask/${ids}`, header)
       .then((res) => {
-        // console.log(res.data.contents);
         setAskContents(res.data.contents);
       })
       .catch((error) => console.log(error));
@@ -74,11 +83,12 @@ function MainTabsUnder({ mainContentsValue }) {
       const header = {
         headers: {
           "Content-Type": `application/json`,
+          Authorization: `Bearer ${cookies["accessToken"]}`,
         },
       };
 
       axios
-        .patch(`http://localhost:4000/ask/${ids}`, data, header)
+        .patch(`http://localhost:8000/ask/${ids}`, data, header)
         .then((data) => {
           setContentsValue(contentsValue.concat(data));
         })
@@ -110,8 +120,14 @@ function MainTabsUnder({ mainContentsValue }) {
   const [answerLists, setAnswerLists] = useState([]);
   //! ask -> 답변 작성 받아오기 GET
   const fetchDataAnswer = () => {
+    const header = {
+      headers: {
+        Authorization: `Bearer ${cookies["accessToken"]}`,
+      },
+    };
+
     axios
-      .get(`http://localhost:4000/ask/${ids}`)
+      .get(`http://localhost:8000/ask/${ids}`, header)
       .then((res) => {
         // console.log(res.data.answer);
         setAnswerLists(res.data.answer);
@@ -148,11 +164,12 @@ function MainTabsUnder({ mainContentsValue }) {
       const header = {
         headers: {
           "Content-Type": `application/json`,
+          Authorization: `Bearer ${cookies["accessToken"]}`,
         },
       };
 
       axios
-        .patch(encodeURI(`http://localhost:4000/ask/${ids}`), data, header)
+        .patch(encodeURI(`http://localhost:8000/ask/${ids}`), data, header)
         .then((data) => {
           setIdValue(idValue.concat(data));
           setContentsValue(contentsValue.concat(data));

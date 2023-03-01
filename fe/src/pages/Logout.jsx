@@ -2,17 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import LogoutNav from "../components/nav/LogoutNav";
 import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Logout() {
   const navigate = useNavigate();
 
-  // 로그아웃 기능 구현
-  const logoutHandler = () => {
-    // let token = localStorage.getItem("token");
+  const [cookies, removeCookie] = useCookies();
 
-    localStorage.clear();
+  // 로그아웃 기능 구현
+  const logoutHandler = (e) => {
+    removeCookie("accessToken");
+
     alert("성공적으로 로그아웃 했습니다.");
     navigate("/");
+    // window.location.reload();
   };
   return (
     <>
@@ -22,7 +25,7 @@ function Logout() {
           Clicking "Log out" will log you out of the following domains on this
           device:
         </H1>
-        <LogoutForm onSubmit={logoutHandler}>
+        <LogoutForm onClick={logoutHandler}>
           <ul>
             <li>
               <a href="https://askubuntu.com">

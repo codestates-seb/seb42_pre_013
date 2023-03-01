@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "abc",
+      "email": "aaaa@gmail.com",
+      "password": "123456"
+    },
+    {
+      "email": "1234@test.com",
+      "password": "$2a$10$pwRGH3anrq0rEai/JmVN6.buQJaJ1urjrHCoF6w333wqc7sB3PPwS",
+      "displayName": "123",
+      "id": 2
+    },
+    {
+      "email": "1234@naver.com",
+      "password": "$2a$10$V2Z6iJWWzVt6DixQNDEDAuS1XJ0cBBEHM0oxsBv.6AEP6aQKABTF6",
+      "displayName": "1234",
+      "id": 3
+    },
+    {
+      "email": "12345@test.com",
+      "password": "$2a$10$W8vKj7nci9itsNRY9QdV8epUfZlGCLEb.eAkChk9FYMD00Om3S/JS",
+      "displayName": "qqq",
+      "id": 4
+    },
+    {
+      "email": "123@t.com",
+      "password": "$2a$10$Fpi6.9BY.p3HdJ6HlcR8WulIAOKEAAKZCntj1YEw5Xbw6kj8LiOp2",
+      "displayName": "12345",
+      "id": 5
+    },
+    {
+      "email": "qwerty@ttt.ts",
+      "password": "$2a$10$BWX0keSHxeL5kWOeGu8OaeroPWZyBoTlxPn/DU/MCyTaLOAUFEfp.",
+      "displayName": "12341234",
+      "id": 6
+    },
+    {
+      "email": "qwert@tt.ts",
+      "password": "$2a$10$044l1ejgIgGtcM9rLXBLh.qycj/DTIhlLKtpS/p4jFXXblRPNxVx2",
+      "displayName": "2341",
+      "id": 7
+    },
+    {
+      "email": "123@tt.com",
+      "password": "$2a$10$VGQLX8YB3pjrZJBAp3KiBO.xQZXvdKI6VAl1yNzvBcniRjmV/enuO",
+      "displayName": "12345",
+      "id": 8
+    },
+    {
+      "email": "1234@test",
+      "password": "$2a$10$Tm9TTvhZT3EvImweiOYzGe3ym3Nw3FmQuQpvml.wOohzPl59JBppy",
+      "displayName": "12342134",
+      "id": 9
+    }
+  ],
+  "ask": [
+    {
+      "id": "0c0bbeb5-5e53-4151-86a7-8310573b7946",
+      "title": "댓글 삭제가 안되네",
+      "contents": "ㅜ",
+      "answer": [
+        {
+          "id": "25f03ed2-5aed-4bee-880a-6b3013b6e9da",
+          "answers": "잠정 중단\n"
+        },
+        {
+          "id": "f6b2d9fa-be28-493b-a958-2c31c3ad0715",
+          "answers": "삭제 접근"
+        },
+        {
+          "id": "f5784e07-f09f-43f9-ac74-603761f3776e",
+          "answers": "vv"
+        },
+        {
+          "id": "83addbf4-c92c-4153-9de3-7f9bc3f81a76",
+          "answers": "1234"
+        },
+        {
+          "id": "73df998e-2175-4524-a07f-4356975bf525",
+          "answers": "sdf"
+        }
+      ]
+    }
+  ]
+}

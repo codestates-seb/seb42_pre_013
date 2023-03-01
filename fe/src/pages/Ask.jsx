@@ -6,14 +6,14 @@ import Footer from "../components/footer/Footer";
 import BlueBoxContents from "../components/ask/BlueBoxContents";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Ask({ mainContentsValue }) {
   // 작성글 ID
   //   const contentsId = useRef(4);
   //   const contentsId = mainContentsValue.length++;
-//   const contentsId = Math.random().toString(36);
-  const contentsId = crypto.randomUUID()
-
+  //   const contentsId = Math.random().toString(36);
+  const contentsId = crypto.randomUUID();
 
   // title , contents 값
   const [titleValue, setTitleValue] = useState("");
@@ -38,6 +38,9 @@ function Ask({ mainContentsValue }) {
   // navigate 받기
   const navigate = useNavigate();
 
+  //쿠키 받기
+  const [cookies] = useCookies();
+
   //! answer 작성한 것 서버에 전송 POST
   const submitContentsHandler = (e) => {
     if (!titleValue || !contentsValue) {
@@ -54,11 +57,12 @@ function Ask({ mainContentsValue }) {
       const header = {
         headers: {
           "Content-Type": `application/json`,
+          Authorization: `Bearer ${cookies["accessToken"]}`,
         },
       };
 
       axios
-        .post(`http://localhost:4000/ask`, data, header)
+        .post(`http://localhost:8000/ask`, data, header)
         .then((data) => {
           setIdValue(idValue);
           setTitleValue(titleValue.concat(data));
