@@ -53,35 +53,70 @@
       "password": "$2a$10$Tm9TTvhZT3EvImweiOYzGe3ym3Nw3FmQuQpvml.wOohzPl59JBppy",
       "displayName": "12342134",
       "id": 9
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$MYyGeJL4vDI4Re7wDH87hOsW0wf3oFizx99Zvb2eIyGaWrrblUMpK",
+      "displayName": "테스트",
+      "id": 10
+    },
+    {
+      "email": "test1@test.com",
+      "password": "$2a$10$NXWF3g7xIwXUBeKW8q1tfey2CMq8VHMUaz1OSBZ5c4SwoZggtcP/K",
+      "displayName": "1234",
+      "id": 11
+    },
+    {
+      "email": "test2@test.com",
+      "password": "$2a$10$lR88JtHvoP.10cWkk6KfxOvYHTdLyedbCijv0a5Q3WGq01KBblDV.",
+      "displayName": "123456",
+      "id": 12
+    },
+    {
+      "email": "test3@test.com",
+      "password": "$2a$10$Q9N2VichQrvhhX6w1K.K4ulbllPCZjbvxsa1kuJFj2FRkothYbywm",
+      "displayName": "1234567",
+      "id": 13
+    },
+    {
+      "email": "qwer@test.com",
+      "password": "$2a$10$J7wXM2RPL.ueHW5cZ.PIuunqI/Xa/iH9IuqBEPtVAkpumLTBm.QDC",
+      "displayName": "qwe",
+      "id": 14
     }
   ],
   "ask": [
     {
-      "id": "0c0bbeb5-5e53-4151-86a7-8310573b7946",
-      "title": "댓글 삭제가 안되네",
-      "contents": "ㅜ",
+      "id": "3377895c-80f4-409f-ba35-39ce1173651b",
+      "title": "글작성 테스트",
+      "contents": "코멘트 수정 ㄱ",
       "answer": [
         {
-          "id": "25f03ed2-5aed-4bee-880a-6b3013b6e9da",
-          "answers": "잠정 중단\n"
-        },
-        {
-          "id": "f6b2d9fa-be28-493b-a958-2c31c3ad0715",
-          "answers": "삭제 접근"
-        },
-        {
-          "id": "f5784e07-f09f-43f9-ac74-603761f3776e",
-          "answers": "vv"
-        },
-        {
-          "id": "83addbf4-c92c-4153-9de3-7f9bc3f81a76",
-          "answers": "1234"
-        },
-        {
-          "id": "73df998e-2175-4524-a07f-4356975bf525",
-          "answers": "sdf"
+          "id": "5aa932f5-d101-4c41-8434-331fe1df80b1",
+          "answers": "댓글"
         }
       ]
+    },
+    {
+      "id": "04121aa4-2a4d-4555-a873-e765b586509b",
+      "title": "글작성하기",
+      "contents": "내용 수정하기~",
+      "answer": [
+        {
+          "id": "2743e4f6-0a9c-4b07-b970-3601212d63e6",
+          "answers": "답변작성1"
+        },
+        {
+          "id": "02d369ff-162a-41ea-bc17-8c88214d14c6",
+          "answers": "답변작성2"
+        }
+      ]
+    },
+    {
+      "id": "856a53d5-d416-436e-8ce9-7b89b0bb6c1b",
+      "title": "작성",
+      "contents": "1",
+      "answer": []
     }
   ]
 }

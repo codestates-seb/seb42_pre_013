@@ -24,8 +24,10 @@ function LoginForm() {
       });
       // path 전역 사용
       setCookie("accessToken", data["accessToken"], { path: "/" });
+      alert("로그인 성공! 환영합니다~~");
       navigate("/main");
       window.location.reload()
+
     } catch (error) {
       alert("로그인 실패! 이메일,비밀번호를 정확히 입력해주세요.");
       console.log(error);
