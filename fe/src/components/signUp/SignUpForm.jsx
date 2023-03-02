@@ -4,7 +4,7 @@ import copyBtn from "../../assets/svg/copyBtn.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const SERVER_URL = "http://localhost:4000/users/signup";
+const SERVER_URL = "http://ec2-43-201-17-252.ap-northeast-2.compute.amazonaws.com/api/users/signup";
 
 function SignUpForm() {
   // const [userList, setUserList] = useState(null);

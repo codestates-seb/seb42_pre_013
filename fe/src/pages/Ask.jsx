@@ -58,7 +58,7 @@ function Ask({ mainContentsValue }) {
       };
 
       axios
-        .post(`http://localhost:4000/ask`, data, header)
+        .post(`http://ec2-43-201-17-252.ap-northeast-2.compute.amazonaws.com/api/board`, data, header)
         .then((data) => {
           setIdValue(idValue);
           setTitleValue(titleValue.concat(data));

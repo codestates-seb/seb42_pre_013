@@ -30,7 +30,10 @@ function App() {
     };
 
     await axios
-      .get(`http://localhost:4000/ask`, header)
+      .get(
+        `http://ec2-43-201-17-252.ap-northeast-2.compute.amazonaws.com/api/board`,
+        header
+      )
       .then((res) => {
         setMainContentsValue(res.data);
         // console.log(res.data);
