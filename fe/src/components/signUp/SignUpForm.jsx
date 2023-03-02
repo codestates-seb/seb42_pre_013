@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 //! SignUp POST URL
-const SERVER_URL = "http://localhost:8000/register";
+const SERVER_URL = "/api/users/signup";
 
 function SignUpForm({ setCookie }) {
   const navigate = useNavigate();
