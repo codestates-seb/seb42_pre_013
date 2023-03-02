@@ -1,0 +1,38 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "abc",
+      "email": "aaaa@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "ask": [
+    {
+      "id": "0c0bbeb5-5e53-4151-86a7-8310573b7946",
+      "title": "댓글 삭제가 안되네",
+      "contents": "ㅜ",
+      "answer": [
+        {
+          "id": "25f03ed2-5aed-4bee-880a-6b3013b6e9da",
+          "answers": "잠정 중단\n"
+        },
+        {
+          "id": "f6b2d9fa-be28-493b-a958-2c31c3ad0715",
+          "answers": "삭제 접근"
+        }
+      ]
+    },
+    {
+      "id": "b23e5469-f724-4b46-9a4b-fb0b85210a5a",
+      "title": "1234",
+      "contents": "코멘트 수정 하기\n",
+      "answer": [
+        {
+          "id": "86297864-f47a-4c20-9e3e-e5540dcda640",
+          "answers": "ㅁㄴㅇㄹㅁㄴㅇㄹ"
+        }
+      ]
+    }
+  ]
+}
